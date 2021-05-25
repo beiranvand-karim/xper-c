@@ -3,23 +3,31 @@
 
 #include "MyWindow.h"
 
-
 MyWindow::MyWindow() {
+
     set_border_width(10);
     set_default_size(1000, 500);
     set_position(Gtk::WIN_POS_CENTER);
     set_events(Gdk::BUTTON1_MOTION_MASK);
+    set_titlebar(header);
 
     open_image_button.set_label("Open image");
 
     open_image_button.signal_clicked().connect(sigc::mem_fun(
             *this,
             &MyWindow::on_open_image_button_clicked));
+    show_side_bar.set_label("menu");
 
+    show_side_bar.signal_clicked().connect(sigc::mem_fun(
+            *this,
+            &MyWindow::on_show_side_bar_button_clicked));
 
-    set_titlebar(header);
-    header.set_show_close_button(true);
+    header.pack_start(show_side_bar);
     header.pack_start(open_image_button);
+    header.set_show_close_button(true);
+
+
+    scale = 1;
 
     draw.add_events(Gdk::BUTTON_PRESS_MASK | Gdk::SCROLL_MASK | Gdk::SMOOTH_SCROLL_MASK);
     draw.signal_scroll_event().connect(sigc::mem_fun(
@@ -29,7 +37,7 @@ MyWindow::MyWindow() {
             *this,
             &MyWindow::on_draw_cairo));
 
-    scale = 1;
+    add(sidebar);
     show_all();
 }
 
@@ -58,9 +66,9 @@ void MyWindow::on_open_image_button_clicked() {
 
             try {
                 image = Gdk::Pixbuf::create_from_file(fileName);
-                this->add(draw);
+                remove();
+                add(draw);
                 draw.show();
-                show_all();
             }
             catch (GError error) {
                 g_print("file not found");
@@ -103,4 +111,9 @@ bool MyWindow::on_draw_cairo(const Cairo::RefPtr<Cairo::Context> &cr) {
     cr->fill();
 
     return true;
+}
+
+void MyWindow::on_show_side_bar_button_clicked() {
+    remove();
+    add(sidebar);
 }

@@ -1,12 +1,12 @@
 #include <gdkmm.h>
 #include <gtkmm.h>
-
+#include "iostream"
 #include "MyWindow.h"
 
 MyWindow::MyWindow() {
 
     set_border_width(10);
-    set_default_size(1000, 500);
+    set_default_size(1800, 1000);
     set_position(Gtk::WIN_POS_CENTER);
     set_events(Gdk::BUTTON1_MOTION_MASK);
     set_titlebar(header);
@@ -96,6 +96,7 @@ bool MyWindow::on_draw_cairo(const Cairo::RefPtr<Cairo::Context> &cr) {
     Gtk::Allocation allocation = get_allocation();
     const int width = allocation.get_width();
     const int height = allocation.get_height();
+    std::cout<<height<<std::endl;
     cr->scale(scale, scale);
 
     Gdk::Cairo::set_source_pixbuf(cr,

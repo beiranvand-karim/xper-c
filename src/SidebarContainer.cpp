@@ -23,7 +23,7 @@ SidebarContainer::SidebarContainer() {
     label_about.set_text("About");
     label_contact.set_text("Contact");
 
-    sidebar.set_size_request(200, 500);
+    sidebar.set_size_request(360, 200);
 }
 
 

@@ -14,7 +14,7 @@ SidebarContainer::SidebarContainer() {
     pack_start(sidebar, false, false, 0);
     pack_start(stack, true, true, 0);
 
-
+    stack.add(textview, "text", "Text Editor");
     stack.add(label_home, "home", "Home");
     stack.add(label_about, "about", "About");
     stack.add(label_contact, "contact", "Contact");

@@ -4,6 +4,8 @@
 #include <gtkmm.h>
 #include <gdkmm.h>
 
+#include "../textview/TextViewContainer.h"
+
 class SidebarContainer : public Gtk::Box  {
 public:
     SidebarContainer();
@@ -13,6 +15,7 @@ protected:
     Gtk::Stack stack;
     Gtk::Label label_home, label_about, label_contact;
 
+    TextViewContainer textview;
 };
 
 

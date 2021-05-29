@@ -1,7 +1,7 @@
 #include <gtkmm.h>
 #include <glibmm.h>
 
-#include "MyWindow.h"
+#include "window/MyWindow.h"
 
 int main (int argc, char *argv[])
 {

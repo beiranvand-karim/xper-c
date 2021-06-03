@@ -1,9 +1,11 @@
 #include <gdkmm.h>
 #include <gtkmm.h>
 #include "iostream"
-#include "MyWindow.h"
+
+#include "shared/MyWindow.h"
 
 MyWindow::MyWindow() {
+
 
     set_border_width(10);
     set_default_size(1800, 1000);

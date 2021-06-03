@@ -4,7 +4,7 @@
 #include <gtkmm.h>
 #include <gdkmm.h>
 
-#include "../textview/TextViewContainer.h"
+#include "TextViewContainer.h"
 
 class SidebarContainer : public Gtk::Box  {
 public:

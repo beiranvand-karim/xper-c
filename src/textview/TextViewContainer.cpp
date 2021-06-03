@@ -1,7 +1,7 @@
 #include <glibmm.h>
 #include "iostream"
 
-#include "TextViewContainer.h"
+#include "shared/TextViewContainer.h"
 
 using namespace std;
 

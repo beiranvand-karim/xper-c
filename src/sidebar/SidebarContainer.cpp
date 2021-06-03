@@ -1,6 +1,6 @@
 #include <gtkmm.h>
 
-#include "SidebarContainer.h"
+#include "shared/SidebarContainer.h"
 
 
 SidebarContainer::SidebarContainer() {

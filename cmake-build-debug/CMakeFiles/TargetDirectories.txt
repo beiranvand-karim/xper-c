@@ -1,0 +1,7 @@
+/home/mohamadp91/Documents/myXper/xper-cpp/cmake-build-debug/CMakeFiles/install/strip.dir
+/home/mohamadp91/Documents/myXper/xper-cpp/cmake-build-debug/CMakeFiles/install/local.dir
+/home/mohamadp91/Documents/myXper/xper-cpp/cmake-build-debug/CMakeFiles/xper-cpp.dir
+/home/mohamadp91/Documents/myXper/xper-cpp/cmake-build-debug/CMakeFiles/install.dir
+/home/mohamadp91/Documents/myXper/xper-cpp/cmake-build-debug/CMakeFiles/list_install_components.dir
+/home/mohamadp91/Documents/myXper/xper-cpp/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/mohamadp91/Documents/myXper/xper-cpp/cmake-build-debug/CMakeFiles/rebuild_cache.dir

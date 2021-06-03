@@ -37,10 +37,15 @@ Open xper-cpp directory then:
 ```
 mkdir build
 cd build
-cmake ../src/
+cmake ../
 make 
 ./xper-cpp
 ``` 
 
 ### 4 _ Build and run the project in the **_clion_** idea
 Open **_CMakeLists.txt_** and click the load **_CMakeList.txt_** button then Run the **_xper-cpp_**.
+
+### install project
+
+After try `cmake ../` you can try this:
+> make install

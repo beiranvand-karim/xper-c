@@ -4,7 +4,7 @@
 #include <gtkmm.h>
 #include <gdkmm.h>
 
-#include "../sidebar/SidebarContainer.h"
+#include "SidebarContainer.h"
 
 class MyWindow : public Gtk::Window
 {

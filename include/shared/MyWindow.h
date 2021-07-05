@@ -4,19 +4,22 @@
 #include <gtkmm.h>
 #include <gdkmm.h>
 
-#include "EditorContainer.h"
+#include "MyHeaderBar.h"
+#include "DrawerContainer.h"
 
 class MyWindow : public Gtk::Window
 {
 
 public:
     MyWindow();
+    void on_drawer_select();
 
 protected:
 
-    Gtk::HeaderBar header;
-    EditorContainer editorContainer;
+    MyHeaderBar header;
+    DrawerContainer drawerContainer;
 
+    Gtk::Image windowImage;
 };
 
 

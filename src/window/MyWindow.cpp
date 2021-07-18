@@ -1,36 +1,25 @@
-#include <gdkmm.h>
 #include <gtkmm.h>
 
 #include "shared/MyWindow.h"
 
-MyWindow::MyWindow() {
-
+MyWindow::MyWindow(BaseObjectType *obj, Glib::RefPtr<Gtk::Builder> const &builder)
+        : Gtk::ApplicationWindow(obj),
+          builder{builder} {
 
     set_position(Gtk::WIN_POS_CENTER);
-    set_events(Gdk::BUTTON1_MOTION_MASK);
-    set_default_size(1848, 800);
-    queue_resize();
+    set_default_size(1848, 1053);
 
+    builder->get_widget_derived("app_container",appContainer);
 
-    set_titlebar(header);
+    builder->get_widget("frame",frame);
+    frame->set_size_request(1500,1);
 
-    header.cppDrawer.signal_activate().connect(sigc::mem_fun(*this, &MyWindow::on_drawer_select));
-
-    // window image
-    auto pixBuf = Gdk::Pixbuf::create_from_file("resource/window-image.png", 100, 100);
-    windowImage.set(pixBuf);
-
-
-    add(windowImage);
     show_all();
 }
 
-void MyWindow::on_drawer_select() {
+MyWindow::~MyWindow() {}
 
-    remove();
-    add(drawerContainer);
-    drawerContainer.show_all();
-    drawerContainer.set_size_request(1800, 1000);
+MyWindow::MyWindow() {}
 
-}
+
 

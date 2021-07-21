@@ -4,22 +4,21 @@
 #include <gtkmm.h>
 #include <gdkmm.h>
 
-#include "MyHeaderBar.h"
-#include "DrawerContainer.h"
+#include "AppContainer.h"
 
-class MyWindow : public Gtk::Window
-{
+class MyWindow : public Gtk::ApplicationWindow {
 
 public:
+    MyWindow(BaseObjectType* obj, Glib::RefPtr<Gtk::Builder> const& builder);
     MyWindow();
-    void on_drawer_select();
 
-protected:
+    virtual ~MyWindow();
 
-    MyHeaderBar header;
-    DrawerContainer drawerContainer;
+private:
 
-    Gtk::Image windowImage;
+    AppContainer* appContainer = nullptr;
+    Glib::RefPtr<Gtk::Builder> builder;
+    Gtk::Frame* frame;
 };
 
 

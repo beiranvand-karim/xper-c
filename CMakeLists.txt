@@ -7,9 +7,9 @@ set(CMAKE_CXX_FLAGS_RELEASE_INIT "-Wall")
 set(SOURCE_FILES
         src/main.cpp
         src/window/MyWindow.cpp
-        src/headerbar/MyHeaderBar.cpp
+        src/appContainer/AppContainer.cpp
         src/drawer/Drawer.cpp
-        src/drawer/DrawerContainer.cpp)
+        src/drawer/DrawOptions.cpp)
 
 add_executable(xper-cpp ${SOURCE_FILES})
 
@@ -28,6 +28,8 @@ target_link_libraries(xper-cpp ${GTK3_LIBRARIES})
 
 file(COPY resource DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY resource DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY style DESTINATION ${CMAKE_CACHEFILE_DIR})
+file(COPY ui DESTINATION  ${CMAKE_CACHEFILE_DIR})
 
 ### install the project
 set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR}/install)
@@ -36,4 +38,5 @@ install(TARGETS xper-cpp DESTINATION bin)
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/include DESTINATION include)
 install(DIRECTORY ${GTK3_LIBRARY_DIRS} DESTINATION lib)
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/resource DESTINATION files)
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/ui DESTINATION ui)
 

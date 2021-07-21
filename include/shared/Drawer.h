@@ -8,41 +8,27 @@
 
 class Drawer : public Gtk::DrawingArea {
 public:
+    Drawer(BaseObjectType *obj, Glib::RefPtr<Gtk::Builder> const &builder);
+
     Drawer();
 
     ~Drawer();
 
-    void set_width(int w);
+    void set_movable(Glib::ustring movable);
 
-    void set_height(int h);
-
-    void set_x(int x);
-
-    void set_y(int y);
-
-    void set_line_width(int lw);
-
-    void set_color(Gdk::RGBA rgba);
-
-    void shape_config(int x,
-                      int y,
-                      int w,
-                      int h,
-                      Gdk::RGBA rgba,
-                      int lw,
-                      const char *shapeName);
-
-    void set_fill();
-
-    // signal draw
-
+protected:
     bool draw_shapes(const Cairo::RefPtr<::Cairo::Context> &cr);
 
+    void on_image_chooser_clicked();
+
 private:
-    Gdk::RGBA cairoRgba;
-    double width, height, beginPoint_x, beginPoint_y, endPoint_x, endPoint_y, lineWidth;
-    const char *shape;
-    bool isFill;
+    Glib::RefPtr<Gtk::Builder> drawingBuilder;
+    Gtk::ImageMenuItem *newItem, *openItem;
+
+    Glib::RefPtr<Gdk::Pixbuf> pix;
+
+    double endPoint_x = 0;
+    double endPoint_y = 0;
 
 };
 

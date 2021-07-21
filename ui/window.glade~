@@ -4,8 +4,8 @@
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkApplicationWindow" id="window">
     <property name="can_focus">False</property>
-    <property name="default_width">1834</property>
-    <property name="default_height">1053</property>
+    <property name="default_width">400</property>
+    <property name="default_height">400</property>
     <child type="titlebar">
       <object class="GtkHeaderBar" id="headerbar">
         <property name="visible">True</property>
@@ -15,7 +15,6 @@
     </child>
     <child>
       <object class="GtkBox" id="app_container">
-        <property name="width_request">0</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="hexpand">True</property>
@@ -27,10 +26,8 @@
             <property name="can_focus">False</property>
             <child>
               <object class="GtkMenuBar" id="menu_bar">
-                <property name="height_request">50</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="border_width">1</property>
                 <child>
                   <object class="GtkMenuItem">
                     <property name="visible">True</property>
@@ -303,14 +300,13 @@
                 </style>
               </object>
               <packing>
-                <property name="expand">False</property>
+                <property name="expand">True</property>
                 <property name="fill">True</property>
                 <property name="position">1</property>
               </packing>
             </child>
             <child>
               <object class="GtkScrolledWindow">
-                <property name="width_request">254</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="hexpand">False</property>

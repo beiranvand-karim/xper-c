@@ -18,7 +18,8 @@ private:
 
     AppContainer* appContainer = nullptr;
     Glib::RefPtr<Gtk::Builder> builder;
-    Gtk::Frame* frame;
+
+    int width,height ,xCoordinate,yCoordinate;
 };
 
 

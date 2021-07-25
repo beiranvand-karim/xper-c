@@ -4,7 +4,9 @@
 #include <gtkmm.h>
 #include <gdkmm.h>
 
+
 #include "AppContainer.h"
+
 
 class MyWindow : public Gtk::ApplicationWindow {
 
@@ -20,6 +22,7 @@ private:
     Glib::RefPtr<Gtk::Builder> builder;
 
     int width,height ,xCoordinate,yCoordinate;
+
 };
 
 

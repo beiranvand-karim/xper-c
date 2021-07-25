@@ -1,6 +1,7 @@
 #include <gtkmm.h>
 #include <iostream>
 
+
 #include "shared/MyWindow.h"
 
 MyWindow::MyWindow(BaseObjectType *obj, Glib::RefPtr<Gtk::Builder> const &builder)
@@ -27,6 +28,4 @@ MyWindow::MyWindow(BaseObjectType *obj, Glib::RefPtr<Gtk::Builder> const &builde
 MyWindow::~MyWindow() {}
 
 MyWindow::MyWindow() {}
-
-
 

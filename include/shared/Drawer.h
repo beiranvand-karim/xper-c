@@ -14,12 +14,23 @@ public:
 
     ~Drawer();
 
-    void set_movable(Glib::ustring movable);
+    void set_movable();
+
+    void set_line_width(int lw);
+
+    void set_color(Gdk::RGBA rgba);
+
+    void shape_config(Gdk::RGBA rgba,
+                      int lw,
+                      const char *shapeName);
+
+    void set_fill();
 
 protected:
     bool draw_shapes(const Cairo::RefPtr<::Cairo::Context> &cr);
 
     void on_image_chooser_clicked();
+
 
 private:
     Glib::RefPtr<Gtk::Builder> drawingBuilder;
@@ -27,8 +38,10 @@ private:
 
     Glib::RefPtr<Gdk::Pixbuf> pix;
 
-    double endPoint_x = 0;
-    double endPoint_y = 0;
+    Gdk::RGBA cairoRgba;
+    double beginPoint_x, beginPoint_y, endPoint_x, endPoint_y, lineWidth,width,height;
+    const char *shape;
+    bool isFill;
 
 };
 

@@ -6,7 +6,7 @@
 class EditorContainer : public Gtk::Box {
 
 public:
-    EditorContainer();
+    EditorContainer(BaseObjectType *obj,Glib::RefPtr<Gtk::Builder> const &builder);
 
     void change_font();
 
@@ -24,41 +24,38 @@ public:
 
     void set_center_dir();
 
-    void set_text_height();
+    void set_text_width(double lw);
 
     // to connect signal to the handler we need this implementation (just for mark_set signal)
 
     void set_mark(const Gtk::TextBuffer::iterator& iter,const Glib::RefPtr<Gtk::TextBuffer::Mark>& mark);
 
 protected:
-    Gtk::ScrolledWindow scrolledWindow;
-    Gtk::TextView textView;
+    Glib::RefPtr<Gtk::Builder> editorBuilder;
+    Gtk::TextView *textView;
+    std::string prefixResource;
+
     Glib::RefPtr<Gtk::TextTagTable> preTable;
 
-    Gtk::Box configTextContainer;
+    Gtk::FontButton *fontChooser;
+    Gtk::ColorButton *colorChooser;
 
-    Gtk::FontButton fontChooser;
-    Gtk::ColorButton colorChooser;
 
-    Gtk::ButtonBox graphicBox, textCaseChooserBox, textDirectionSetterBox;
-
-    Gtk::RadioButtonGroup buttonGroup;
-    Gtk::ModelButton upperCase, lowerCase , underLine;
-    Gtk::RadioButton rTL, lTR, centerDirection;
-    Gtk::SpinButton textHeight;
+    Gtk::ModelButton *upperCase, *lowerCase , *underLine,*rTL, *lTR, *centerDirection;;
+    Gtk::ScaleButton *textWidth;
 
     Gtk::TextBuffer::iterator start, end;
-    Gtk::Image fontChooserIcon,
-            colorChooserIcon,
+    Gtk::Image *fontChooserImg,
+            *colorChooserImg,
             upperCaseIcon,
             lowerCaseIcon,
             underLineIcon,
             rTLIcon,
             lTRIcon,
             centerAlignIcon,
-            cppIcon;
+            textWidthIcon,
+            *cppImg;
 
-    Gtk::Label graphicBoxLabel;
     Glib::RefPtr<Gtk::TextBuffer> textBuffer;
 
 };

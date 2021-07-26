@@ -15,7 +15,7 @@ public:
     virtual ~DrawOptions();
 
 private:
-    Drawer drawer;
+    Drawer* drawer = nullptr;
     Glib::RefPtr<Gtk::Builder> optionsBuilder;
 
     Gtk::ModelButton
@@ -23,15 +23,18 @@ private:
             *squareItem,
             *circleItem,
             *lineItem,
-            *eraserItem;
+            *fillShape;
 
     Glib::RefPtr<Gdk::Pixbuf> pix;
     Gtk::Image moveImg,
             squareImg,
             circleImg,
             lineImg,
-            eraserImg;
+            fillShapeImg,
+            lineWidthImg;
 
+    Gtk::ScaleButton *widthButton;
+    Gtk::ColorButton *colorButton;
     std::string prefixResource;
 };
 

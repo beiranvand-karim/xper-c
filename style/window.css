@@ -1,8 +1,9 @@
-.window{
+.main-container{
     background-color: #494e6b;
 }
-.box-container{
-    background-color: #192231;
+
+.container{
+    background: #192231;
     border-radius: 5px;
     margin: 1px;
 }
@@ -22,7 +23,7 @@
 }
 
 .btn:hover{
-    background-color: #985e6d;
+    background : #985e6d;
     color: white;
     border-radius: 6px;
     border-color: inherit;
@@ -35,12 +36,10 @@
     color: white;
 }
 
-.appContainer {
-    background-color: #494e6b;
+.frame{
+    background: white;
 }
 
-.frame {
-    background-color: white;
-    margin: 1px;
-    border-radius: 5px;
+.fixed{
+    background: #192231;
 }

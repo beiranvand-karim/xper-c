@@ -107,11 +107,9 @@ EditorContainer::EditorContainer(BaseObjectType *obj, Glib::RefPtr<Gtk::Builder>
     textView->set_justification(Gtk::JUSTIFY_LEFT);
     // *******************
 
-    // manage SpinButton
-    auto adjustmentHeight = Gtk::Adjustment::create(0, 0, 60, 1, 10, 0);
-    auto adjustmentWidth = Gtk::Adjustment::create(0, 0, 60, 1, 10, 0);
-
-    textWidth->set_adjustment(adjustmentHeight);
+    // manage scale button
+    auto adj = Gtk::Adjustment::create(0, 0, 60, 1, 10, 0);
+    textWidth->set_adjustment(adj);
     // ******************************
 
 
@@ -132,12 +130,10 @@ void EditorContainer::set_mark(const Gtk::TextBuffer::iterator &iter, const Glib
 
 // direction text functions
 void EditorContainer::set_right_to_left_dir() {
-
     textView->set_justification(Gtk::JUSTIFY_RIGHT);
 }
 
 void EditorContainer::set_left_to_right_dir() {
-
     textView->set_justification(Gtk::JUSTIFY_LEFT);
 }
 

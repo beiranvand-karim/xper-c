@@ -11,8 +11,6 @@ set(SOURCE_FILES
         src/drawer/Drawer.cpp
         src/drawer/DrawOptions.cpp
         src/drawer/DrawerContainer.cpp
-        src/textEditor/MyTextView.cpp
-        src/textEditor/EditorOptions.cpp
         src/textEditor/EditorContainer.cpp)
 
 

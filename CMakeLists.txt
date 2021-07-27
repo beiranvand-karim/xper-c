@@ -9,8 +9,10 @@ set(SOURCE_FILES
         src/window/MyWindow.cpp
         src/appContainer/AppContainer.cpp
         src/drawer/Drawer.cpp
-        src/drawer/DrawOptions.cpp)
-        )
+        src/drawer/DrawOptions.cpp
+        src/drawer/DrawerContainer.cpp
+        src/textEditor/EditorContainer.cpp)
+
 
 add_executable(xper-cpp ${SOURCE_FILES})
 
@@ -29,6 +31,8 @@ target_link_libraries(xper-cpp ${GTK3_LIBRARIES})
 
 file(COPY resource DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY resource DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY style DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY ui DESTINATION  ${CMAKE_BINARY_DIR})
 
 
 ### install the project

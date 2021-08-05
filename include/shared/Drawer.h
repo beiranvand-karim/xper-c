@@ -6,7 +6,7 @@
 #include <gtkmm.h>
 #include <cairo/cairo.h>
 
-class Drawer : public Gtk::DrawingArea {
+class Drawer : public Gtk::Layout {
 public:
     Drawer(BaseObjectType *obj, Glib::RefPtr<Gtk::Builder> const &builder);
 
@@ -26,8 +26,16 @@ public:
 
     void set_fill();
 
+    void clear_drawingArea();
+
 protected:
-    bool draw_shapes(const Cairo::RefPtr<::Cairo::Context> &cr);
+    virtual bool draw_image(const Cairo::RefPtr<::Cairo::Context> &cr);
+
+    virtual bool draw_square(const Cairo::RefPtr<::Cairo::Context> &cr);
+
+    virtual bool draw_circle(const Cairo::RefPtr<::Cairo::Context> &cr);
+
+    virtual bool draw_line(const Cairo::RefPtr<::Cairo::Context> &cr);
 
     void on_image_chooser_clicked();
 
@@ -36,13 +44,18 @@ private:
     Glib::RefPtr<Gtk::Builder> drawingBuilder;
     Gtk::ImageMenuItem *newItem, *openItem;
 
-    Glib::RefPtr<Gdk::Pixbuf> pix;
+    Glib::RefPtr<Gdk::Pixbuf> pix, firstPix;
 
     Gdk::RGBA cairoRgba;
-    double beginPoint_x, beginPoint_y, endPoint_x, endPoint_y, lineWidth,width,height;
+    double beginPoint_x, beginPoint_y, endPoint_x, endPoint_y, lineWidth, width, height;
     const char *shape;
     bool isFill;
 
+    bool isReleaseBtn;
+
+    sigc::connection connection_square,
+            connection_circle,
+            connection_line;
 };
 
 #endif // DRAWING_H

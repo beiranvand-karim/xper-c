@@ -45,6 +45,13 @@ DrawOptions::DrawOptions(BaseObjectType *obj, Glib::RefPtr<Gtk::Builder> const &
             drawer->shape_config(colorButton->get_rgba(), 5, "line");
         });
 
+        optionsBuilder->get_widget("eraser_item", eraserItem);
+        pix = Gdk::Pixbuf::create_from_file(prefixResource + "eraser-icon.png", 30, 30);
+        eraserImg.set(pix);
+        eraserItem->set_image(eraserImg);
+        eraserItem->signal_clicked().connect([&] {
+            drawer->clear_drawingArea();
+        });
 
         optionsBuilder->get_widget("fill_shape", fillShape);
         pix = Gdk::Pixbuf::create_from_file(prefixResource + "fill-icon.png", 30, 30);
@@ -55,13 +62,10 @@ DrawOptions::DrawOptions(BaseObjectType *obj, Glib::RefPtr<Gtk::Builder> const &
         });
 
         optionsBuilder->get_widget("line_width", widthButton);
-        pix = Gdk::Pixbuf::create_from_file(prefixResource + "line-width-icon.png", 30, 30);
-        lineWidthImg.set(pix);
-        widthButton->set_image(lineWidthImg);
-        auto adjustment = Gtk::Adjustment::create(10, 10, 100, 1, 10, 10);
+        auto adjustment = Gtk::Adjustment::create(1, 1, 100, 1, 1, 1);
         widthButton->set_adjustment(adjustment);
-        widthButton->signal_value_changed().connect([&](double value) {
-            drawer->set_line_width(value);
+        widthButton->signal_value_changed().connect([&]() {
+            drawer->set_line_width(widthButton->get_value_as_int());
         });
     }
 }

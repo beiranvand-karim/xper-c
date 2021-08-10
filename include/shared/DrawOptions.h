@@ -23,6 +23,7 @@ private:
             *squareItem,
             *circleItem,
             *lineItem,
+            *eraserItem,
             *fillShape;
 
     Glib::RefPtr<Gdk::Pixbuf> pix;
@@ -30,10 +31,10 @@ private:
             squareImg,
             circleImg,
             lineImg,
-            fillShapeImg,
-            lineWidthImg;
+            eraserImg,
+            fillShapeImg;
 
-    Gtk::ScaleButton *widthButton;
+    Gtk::SpinButton *widthButton;
     Gtk::ColorButton *colorButton;
     std::string prefixResource;
 };

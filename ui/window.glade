@@ -89,6 +89,9 @@
                             </style>
                           </object>
                         </child>
+                        <style>
+                          <class name="sub-menu"/>
+                        </style>
                       </object>
                     </child>
                   </object>
@@ -117,6 +120,9 @@
                             </style>
                           </object>
                         </child>
+                        <style>
+                          <class name="sub-menu"/>
+                        </style>
                       </object>
                     </child>
                   </object>
@@ -251,7 +257,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkModelButton" id="eraser_item">
+                  <object class="GtkModelButton" id="text_item">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -263,6 +269,21 @@
                     <property name="expand">True</property>
                     <property name="fill">True</property>
                     <property name="position">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkModelButton" id="eraser_item">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <style>
+                      <class name="btn"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">5</property>
                   </packing>
                 </child>
                 <style>
@@ -386,6 +407,27 @@
                             <property name="height_request">30</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <style>
+                              <class name="btn"/>
+                            </style>
+                          </object>
+                          <packing>
+                            <property name="x">50</property>
+                            <property name="y">260</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkFontButton" id="font_chooser">
+                            <property name="width_request">70</property>
+                            <property name="height_request">30</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                            <property name="font">Sans 12</property>
+                            <property name="language">en-us</property>
+                            <property name="preview_text">لطفا برای متون فارسی فقط از فونت های فارسی استفاده نمایید.</property>
+                            <property name="show_style">False</property>
+                            <property name="show_size">False</property>
                             <style>
                               <class name="btn"/>
                             </style>

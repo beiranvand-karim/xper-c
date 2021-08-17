@@ -6,9 +6,11 @@
 #include <gtkmm.h>
 #include <cairo/cairo.h>
 
+using namespace std;
+
 class Drawer : public Gtk::Layout {
 public:
-    Drawer(BaseObjectType *obj, Glib::RefPtr<Gtk::Builder> const &builder);
+    Drawer(BaseObjectType *obj, Glib::RefPtr<Gtk::Builder> builder);
 
     Drawer();
 
@@ -20,22 +22,30 @@ public:
 
     void set_color(Gdk::RGBA rgba);
 
-    void shape_config(Gdk::RGBA rgba,
-                      int lw,
-                      const char *shapeName);
+    void draw_shape_config(Gdk::RGBA rgba,
+                           int lw,
+                           const char *shapeName);
+
+    void draw_text_config(Gdk::RGBA rgba,
+                          string fontFamily,
+                          const char *shapeName);
 
     void set_fill();
+
+    void set_font_description(Glib::ustring fontName);
 
     void clear_drawingArea();
 
 protected:
-    virtual bool draw_image(const Cairo::RefPtr<::Cairo::Context> &cr);
+    bool draw_image(const Cairo::RefPtr<::Cairo::Context> &cr);
 
-    virtual bool draw_square(const Cairo::RefPtr<::Cairo::Context> &cr);
+    bool draw_square(const Cairo::RefPtr<::Cairo::Context> &cr);
 
-    virtual bool draw_circle(const Cairo::RefPtr<::Cairo::Context> &cr);
+    bool draw_circle(const Cairo::RefPtr<::Cairo::Context> &cr);
 
-    virtual bool draw_line(const Cairo::RefPtr<::Cairo::Context> &cr);
+    bool draw_line(const Cairo::RefPtr<::Cairo::Context> &cr);
+
+    bool draw_text(const Cairo::RefPtr<::Cairo::Context> &cr);
 
     void on_image_chooser_clicked();
 
@@ -47,15 +57,36 @@ private:
     Glib::RefPtr<Gdk::Pixbuf> pix, firstPix;
 
     Gdk::RGBA cairoRgba;
-    double beginPoint_x, beginPoint_y, endPoint_x, endPoint_y, lineWidth, width, height;
-    const char *shape;
-    bool isFill;
 
-    bool isReleaseBtn;
+    double beginPoint_x,
+            beginPoint_y,
+            endPoint_x,
+            endPoint_y,
+            lineWidth,
+            width,
+            height;
 
-    sigc::connection connection_square,
-            connection_circle,
-            connection_line;
+    bool isFill,
+         canDrawText,
+         shouldReleaseBtn,
+         shouldSaveText;
+
+    sigc::connection square_signal_connection,
+            circle_signal_connection,
+            line_signal_connection,
+            textArea_signal_connection,
+            text_signal_connection;
+
+
+    Gtk::ApplicationWindow *window;
+
+
+    string drawingState,
+            drawingText,
+            fontFamily;
+
+    Glib::RefPtr<Pango::Layout> layout;
+
 };
 
 #endif // DRAWING_H

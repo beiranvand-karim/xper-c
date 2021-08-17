@@ -5,6 +5,8 @@
 
 #include "Drawer.h"
 
+using namespace std;
+
 class DrawOptions : public Gtk::ButtonBox {
 
 public:
@@ -24,7 +26,8 @@ private:
             *circleItem,
             *lineItem,
             *eraserItem,
-            *fillShape;
+            *fillShape,
+            *textItem;
 
     Glib::RefPtr<Gdk::Pixbuf> pix;
     Gtk::Image moveImg,
@@ -32,11 +35,14 @@ private:
             circleImg,
             lineImg,
             eraserImg,
-            fillShapeImg;
+            fillShapeImg,
+            textImg;
 
     Gtk::SpinButton *widthButton;
     Gtk::ColorButton *colorButton;
-    std::string prefixResource;
+    string prefixResource;
+
+    Gtk::FontButton *fontButton;
 };
 
 #endif //XPER_CPP_DRAWOPTIONS_H

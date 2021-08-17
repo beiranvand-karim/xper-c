@@ -49,3 +49,11 @@ Open **_CMakeLists.txt_** and click the load **_CMakeList.txt_** button then Run
 
 After try `cmake ../` you can try this:
 > make install
+
+
+### install persian fonts on linux
+```
+git clone https://github.com/fzerorubigd/persian-fonts-linux.git
+cd persian-fonts-linux
+farsifonts.sh
+```

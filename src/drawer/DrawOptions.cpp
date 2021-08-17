@@ -7,7 +7,7 @@ DrawOptions::DrawOptions(BaseObjectType *obj, Glib::RefPtr<Gtk::Builder> const &
           prefixResource("resource/") {
 
     if (optionsBuilder) {
-        optionsBuilder->get_widget_derived("drawing_area",drawer);
+        optionsBuilder->get_widget_derived("drawing_area", drawer);
         optionsBuilder->get_widget("color_button", colorButton);
         colorButton->signal_color_set().connect([&] {
             drawer->set_color(colorButton->get_rgba());
@@ -26,7 +26,7 @@ DrawOptions::DrawOptions(BaseObjectType *obj, Glib::RefPtr<Gtk::Builder> const &
         squareImg.set(pix);
         squareItem->set_image(squareImg);
         squareItem->signal_clicked().connect([&] {
-            drawer->shape_config(colorButton->get_rgba(), 5, "square");
+            drawer->draw_shape_config(colorButton->get_rgba(), 5, "square");
         });
 
         optionsBuilder->get_widget("circle_item", circleItem);
@@ -34,7 +34,7 @@ DrawOptions::DrawOptions(BaseObjectType *obj, Glib::RefPtr<Gtk::Builder> const &
         circleImg.set(pix);
         circleItem->set_image(circleImg);
         circleItem->signal_clicked().connect([&] {
-            drawer->shape_config(colorButton->get_rgba(), 5, "circle");
+            drawer->draw_shape_config(colorButton->get_rgba(), 5, "circle");
         });
 
         optionsBuilder->get_widget("line_item", lineItem);
@@ -42,7 +42,15 @@ DrawOptions::DrawOptions(BaseObjectType *obj, Glib::RefPtr<Gtk::Builder> const &
         lineImg.set(pix);
         lineItem->set_image(lineImg);
         lineItem->signal_clicked().connect([&] {
-            drawer->shape_config(colorButton->get_rgba(), 5, "line");
+            drawer->draw_shape_config(colorButton->get_rgba(), 5, "line");
+        });
+
+        optionsBuilder->get_widget("text_item", textItem);
+        pix = Gdk::Pixbuf::create_from_file(prefixResource + "text-editor.png", 30, 30);
+        textImg.set(pix);
+        textItem->set_image(textImg);
+        textItem->signal_clicked().connect([&] {
+            drawer->draw_text_config(colorButton->get_rgba(), "Sans", "draw_text");
         });
 
         optionsBuilder->get_widget("eraser_item", eraserItem);
@@ -59,6 +67,11 @@ DrawOptions::DrawOptions(BaseObjectType *obj, Glib::RefPtr<Gtk::Builder> const &
         fillShape->set_image(fillShapeImg);
         fillShape->signal_clicked().connect([&] {
             drawer->set_fill();
+        });
+
+        optionsBuilder->get_widget("font_chooser", fontButton);
+        fontButton->signal_font_set().connect([&] {
+            drawer->set_font_description(fontButton->get_font_name());
         });
 
         optionsBuilder->get_widget("line_width", widthButton);

@@ -1,38 +1,43 @@
 cmake_minimum_required(VERSION 3.16)
-project(xper-cpp)
-
 
 set(CMAKE_CXX_FLAGS_DEBUG_INIT "-Wall")
 set(CMAKE_CXX_FLAGS_RELEASE_INIT "-Wall")
+
+project(xper-cpp)
+
+include_directories(${PROJECT_SOURCE_DIR}/include)
+
 set(SOURCE_FILES
         src/main.cpp
-        src/window/MyWindow.cpp
-        src/appContainer/AppContainer.cpp
-        src/drawer/Drawer.cpp
-        src/drawer/DrawOptions.cpp
-        src/drawer/DrawerContainer.cpp
-        src/textEditor/EditorContainer.cpp)
-
+        src/ui/MyWindow.cpp
+        src/ui/AppContainer.cpp
+        src/drawingShapes/Square.cpp
+        src/drawingShapes/Rectangle.cpp
+        src/drawingShapes/Circle.cpp
+        src/drawingShapes/Line.cpp
+        src/ui/StartingBox.cpp
+        )
 
 add_executable(xper-cpp ${SOURCE_FILES})
 
 
+
 find_package(PkgConfig REQUIRED)
-pkg_check_modules(GTK3 REQUIRED gtkmm-3.0)
 
-include_directories(${GTK3_INCLUDE_DIRS})
-include_directories(${PROJECT_SOURCE_DIR}/include)
-include_directories(${PROJECT_SOURCE_DIR}/resource)
+### Gtkmm dependency
+pkg_check_modules(GTKMM3 REQUIRED gtkmm-3.0)
+include_directories(${GTKMM3_INCLUDE_DIRS})
+target_link_libraries(xper-cpp ${GTKMM3_LIBRARIES})
 
-link_directories(${GTK3_LIBRARY_DIRS})
-add_definitions(${GTK3_CFLAGS_OTHER})
+### GOOCANVASMM dependency
+pkg_check_modules(GOOCANVAS REQUIRED goocanvasmm-2.0)
+include_directories(${GOOCANVAS_INCLUDE_DIRS})
+target_link_libraries(xper-cpp ${GOOCANVAS_LIBRARIES})
 
-target_link_libraries(xper-cpp ${GTK3_LIBRARIES})
-
-file(COPY resource DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+### resource
+file(COPY resource/glade DESTINATION ${CMAKE_BINARY_DIR})
 file(COPY resource DESTINATION ${CMAKE_BINARY_DIR})
 file(COPY style DESTINATION ${CMAKE_BINARY_DIR})
-file(COPY ui DESTINATION  ${CMAKE_BINARY_DIR})
 
 
 ### install the project
@@ -42,4 +47,4 @@ install(TARGETS xper-cpp DESTINATION xper-cpp)
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/include DESTINATION xper-cpp)
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/style DESTINATION xper-cpp)
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/resource DESTINATION xper-cpp)
-install(DIRECTORY ${PROJECT_SOURCE_DIR}/ui DESTINATION xper-cpp)
+install(DIRECTORY resource/glade DESTINATION xper-cpp)

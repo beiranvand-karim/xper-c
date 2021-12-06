@@ -1,30 +1,27 @@
 #ifndef XPER_CPP_STARTINGBOX_H
 #define XPER_CPP_STARTINGBOX_H
 
-#include "gtkmm.h"
+#include <gtkmm/button.h>
+#include <gtkmm/entry.h>
+#include "gtkmm/box.h"
+#include "gtkmm/builder.h"
 
 using namespace std;
 
 class StartingBox : public Gtk::Box {
 
 public:
-    StartingBox();
-
     virtual ~StartingBox();
-
     StartingBox(BaseObjectType *obj, const Glib::RefPtr<Gtk::Builder>& builder);
-    void set_size(int width, int height);
+    static StartingBox *get_instance(Glib::RefPtr<Gtk::Builder> ptr);
 
-protected:
-    void on_change_image();
-
+    StartingBox(StartingBox const&) = delete;
+    void operator=(StartingBox const&) = delete;
 private:
+    StartingBox();
     const Glib::RefPtr<Gtk::Builder> m_builder;
-    Gtk::Stack *m_stack;
-    Gtk::Fixed *m_fixed;
-    Gtk::ModelButton *m_prevButton,*m_nextButton;
-    Gtk::Image *m_page0,*m_page1,*m_page2,*m_page3;
-    Gtk::Image m_prevImg,m_nextImg;
+    Gtk::Button *m_newProjectBtn;
+    Gtk::Entry *m_nameInput;
 };
 
 

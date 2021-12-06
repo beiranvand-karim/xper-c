@@ -1,18 +1,27 @@
 #ifndef XPER_CPP_APPCONTAINER_H
 #define XPER_CPP_APPCONTAINER_H
 
-#include "gtkmm.h"
+#include "gtkmm/box.h"
+#include "gtkmm/builder.h"
+
+#include "SidebarDrawing.h"
+#include "CanvasContainer.h"
 
 class AppContainer : public Gtk::Box {
+
 public:
+    AppContainer(BaseObjectType *obj, Glib::RefPtr<Gtk::Builder> const &builder);
+    ~AppContainer();
+    static AppContainer *get_instance(Glib::RefPtr<Gtk::Builder> refPtr);
 
-    AppContainer(BaseObjectType* obj, Glib::RefPtr<Gtk::Builder> const& builder);
+    AppContainer(AppContainer const&) = delete;
+    void operator=(AppContainer const&) = delete;
 
-    virtual ~AppContainer();
-
-    AppContainer();
 private:
+    AppContainer();
     Glib::RefPtr<Gtk::Builder> m_appContainerBuilder;
+    SidebarDrawing *m_sidebarDrawing;
+    CanvasContainer *m_canvasContainer;
 };
 
 #endif //XPER_CPP_APPCONTAINER_H

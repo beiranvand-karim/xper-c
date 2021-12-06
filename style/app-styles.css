@@ -1,0 +1,48 @@
+.main-container {
+    background: #d4f8f8;
+    font-family: Sarai, serif;
+    font-size: 25px;
+}
+.scroller-container{
+    background: #e5e5e5;
+}
+.btn{
+    margin-top: 5px;
+    border-radius: 5px;
+    color: #fdfdfd;
+    border-bottom: 1px #ffa34d solid;
+    background: #d4f8f8;
+}
+.disable-btn{
+    opacity: .5;
+    color: black;
+}
+.aspect-frame{
+    border: 1px black solid;
+    background: white;
+}
+.label{
+    font-size: 30px;
+    color: black;
+    border-radius: 15px;
+}
+.input{
+    border-radius: 15px;
+    border-color: #ffa34d;
+    border-width: 2px;
+}
+.submit-btn{
+    color: black;
+    border-radius: 15px;
+    background: #ffa34d;
+}
+.submit-btn:hover{
+    color: black;
+    border-radius: 15px;
+    background: #00e676;
+}
+.form{
+    background: #1eb2a6;
+    border-radius: 10px;
+    border: 3px #ffa34d solid;
+}

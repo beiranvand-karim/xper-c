@@ -9,13 +9,13 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 
 set(SOURCE_FILES
         src/main.cpp
-        src/ui/MyWindow.cpp
+        src/ui/MainWindow.cpp
         src/ui/AppContainer.cpp
-        src/drawingShapes/Square.cpp
-        src/drawingShapes/Rectangle.cpp
-        src/drawingShapes/Circle.cpp
-        src/drawingShapes/Line.cpp
         src/ui/StartingBox.cpp
+        src/ui/SidebarDrawing.cpp
+        src/ui/CanvasContainer.cpp
+        src/ui/MainCanvas.cpp
+        src/drawingItems/RectItem.cpp
         )
 
 add_executable(xper-cpp ${SOURCE_FILES})

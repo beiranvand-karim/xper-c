@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/rec">
+        <file>resource/icons/scale.png</file>
+    </qresource>
+</RCC>

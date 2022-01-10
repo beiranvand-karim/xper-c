@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>786</width>
+    <height>567</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="opaqueResize">
+       <bool>true</bool>
+      </property>
+      <property name="childrenCollapsible">
+       <bool>false</bool>
+      </property>
+      <widget class="QScrollArea" name="scrolledCanvas">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="lineWidth">
+        <number>0</number>
+       </property>
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrolledArea">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>654</width>
+          <height>505</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="CanvasView" name="canvasView">
+           <property name="frameShape">
+            <enum>QFrame::VLine</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QScrollArea" name="scrolledMenu">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Panel</enum>
+       </property>
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrolledDrawHelper">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>68</width>
+          <height>503</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>786</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="separator"/>
+   </widget>
+   <addaction name="menu"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>LeftToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="moveAction"/>
+   <addaction name="scaleAction"/>
+   <addaction name="frameAction"/>
+   <addaction name="rectAction"/>
+   <addaction name="ellipseAction"/>
+   <addaction name="polygonAction"/>
+   <addaction name="penAction"/>
+   <addaction name="pencilAction"/>
+   <addaction name="arrowAction"/>
+   <addaction name="imageAction"/>
+   <addaction name="textAction"/>
+  </widget>
+  <action name="moveAction">
+   <property name="icon">
+    <iconset resource="../resource/res.qrc">
+     <normaloff>:/icons/icons/move-icon.svg</normaloff>:/icons/icons/move-icon.svg</iconset>
+   </property>
+   <property name="text">
+    <string>move</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;move&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
+  <action name="rectAction">
+   <property name="icon">
+    <iconset resource="../resource/res.qrc">
+     <normaloff>:/icons/icons/rectangle-icon.svg</normaloff>:/icons/icons/rectangle-icon.svg</iconset>
+   </property>
+   <property name="text">
+    <string>rectangle</string>
+   </property>
+   <property name="toolTip">
+    <string>Rectangle</string>
+   </property>
+  </action>
+  <action name="frameAction">
+   <property name="icon">
+    <iconset>
+     <normalon>:/icons/icons/frame-icon.svg</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>frame</string>
+   </property>
+   <property name="toolTip">
+    <string>Frame</string>
+   </property>
+  </action>
+  <action name="ellipseAction">
+   <property name="icon">
+    <iconset resource="../resource/res.qrc">
+     <normaloff>:/icons/icons/ellipse-icon.svg</normaloff>:/icons/icons/ellipse-icon.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Ellipse</string>
+   </property>
+   <property name="toolTip">
+    <string>Ellipse</string>
+   </property>
+  </action>
+  <action name="penAction">
+   <property name="icon">
+    <iconset resource="../resource/res.qrc">
+     <normaloff>:/icons/icons/pen-icon.svg</normaloff>:/icons/icons/pen-icon.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Pen</string>
+   </property>
+   <property name="toolTip">
+    <string>Pen</string>
+   </property>
+  </action>
+  <action name="pencilAction">
+   <property name="icon">
+    <iconset resource="../resource/res.qrc">
+     <normaloff>:/icons/icons/pencil-icon.svg</normaloff>:/icons/icons/pencil-icon.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Pencil</string>
+   </property>
+   <property name="toolTip">
+    <string>Pencil</string>
+   </property>
+  </action>
+  <action name="scaleAction">
+   <property name="icon">
+    <iconset resource="../resource/res.qrc">
+     <normaloff>:/icons/icons/scale.png</normaloff>:/icons/icons/scale.png</iconset>
+   </property>
+   <property name="text">
+    <string>Scale</string>
+   </property>
+   <property name="toolTip">
+    <string>Scale</string>
+   </property>
+  </action>
+  <action name="arrowAction">
+   <property name="icon">
+    <iconset resource="../resource/res.qrc">
+     <normaloff>:/icons/icons/arrow-icon.svg</normaloff>:/icons/icons/arrow-icon.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Arrow</string>
+   </property>
+   <property name="toolTip">
+    <string>Arrow</string>
+   </property>
+  </action>
+  <action name="polygonAction">
+   <property name="icon">
+    <iconset resource="../resource/res.qrc">
+     <normaloff>:/icons/icons/polygon-icon.svg</normaloff>:/icons/icons/polygon-icon.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Polygon</string>
+   </property>
+   <property name="toolTip">
+    <string>Plygon</string>
+   </property>
+  </action>
+  <action name="imageAction">
+   <property name="icon">
+    <iconset resource="../resource/res.qrc">
+     <normaloff>:/icons/icons/image-icon.svg</normaloff>:/icons/icons/image-icon.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Image</string>
+   </property>
+   <property name="toolTip">
+    <string>Image</string>
+   </property>
+  </action>
+  <action name="textAction">
+   <property name="icon">
+    <iconset resource="../resource/res.qrc">
+     <normaloff>:/icons/icons/text-icon.svg</normaloff>:/icons/icons/text-icon.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Text</string>
+   </property>
+   <property name="toolTip">
+    <string>Text</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CanvasView</class>
+   <extends>QGraphicsView</extends>
+   <header>canvasview.h</header>
+   <slots>
+    <slot>onActionTriggered(QAction*)</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../resource/res.qrc"/>
+ </resources>
+ <connections/>
+</ui>

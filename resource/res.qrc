@@ -5,12 +5,12 @@
         <file>icons/rectangle-icon.svg</file>
         <file>icons/move-icon.svg</file>
         <file>icons/xper.png</file>
-        <file>icons/scale.png</file>
-        <file>icons/arrow-icon.svg</file>
         <file>icons/image-icon.svg</file>
         <file>icons/pencil-icon.svg</file>
         <file>icons/pen-icon.svg</file>
         <file>icons/polygon-icon.svg</file>
         <file>icons/text-icon.svg</file>
+        <file>icons/line-icon.svg</file>
+        <file>icons/scale-icon.svg</file>
     </qresource>
 </RCC>

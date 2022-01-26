@@ -7,7 +7,7 @@ enum State { DRAW, MOVE, SCALE, FRAME };
 enum Shapes {
   NONE,
   RECTANGLE,
-  ARROW,
+  LINE,
   POLYGON,
   ELLIPSE,
   IMAGE,

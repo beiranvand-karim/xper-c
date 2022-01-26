@@ -1,59 +1,30 @@
 # xper-cpp
-
-## project implementation
-
-### 1 _ download and install **_cmake_**.
-You can download and install **_cmake_** from [cmake download](https://cmake.org/download/) and [cmake install](https://cmake.org/install/) .
-
-To download and install **_cmake_** on mac from terminal, [click here](http://macappstore.org/cmake/).
-
-### 2 _ Add requirement libraries 
-
-## mac os
-* Download **_gtkmm_** library for mac from [gtkmm lib](http://macappstore.org/gtkmm/) or from terminal :
-> brew install gtkmm3 
-
-* Install **_pkgconfig_** as package manager for mac:
-> brew install pkg-config
-
-## Ubuntu 
-* Download **_gtkmm_** library for Ubuntu from [gtkmm lib](https://gtkmm.org/en/download.html) or from terminal :
-> sudo apt-get install libgtkmm-3.0-dev
-
 ___
+## Install dependencies
 
-> pkg-config  --cflags gtkmm-3.0
+### 1 _ download and install **_qt and qmake_**.
+for Ubuntu :
+```
+sudo apt-get update -y
+sudo apt-get install -y qt5-qmake
+```
 
-or 
+for mac :
+```
+brew install qt
+```
+or
+```
+brew install qt5
+```
 
-> pkg-config  --cflags gtkmm3
-
-
-
-
-### 3 _ Build and run the project in terminal
-Open xper-cpp directory then:
+### 2 _ Build and run the project in terminal
+open a terminal in the project directory:
 
 ```
 mkdir build
 cd build
-cmake ../
+qmake ../
 make 
 ./xper-cpp
-``` 
-
-### 4 _ Build and run the project in the **_clion_** idea
-Open **_CMakeLists.txt_** and click the load **_CMakeList.txt_** button then Run the **_xper-cpp_**.
-
-### install project
-
-After try `cmake ../` you can try this:
-> make install
-
-
-### install persian fonts on linux
-```
-git clone https://github.com/fzerorubigd/persian-fonts-linux.git
-cd persian-fonts-linux
-farsifonts.sh
 ```

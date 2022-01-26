@@ -24,7 +24,10 @@ MainWindow::MainWindow(QWidget *parent)
   ui->scrolledCanvas->resize(appWidth / 5 * 4, 0);
 }
 
-MainWindow::~MainWindow() { delete ui; }
+MainWindow::~MainWindow() {
+  delete ui;
+  delete canvasView;
+}
 
 void MainWindow::on_moveAction_triggered() {
   this->canvasView->setCanvasState(CanvasState::Shapes::NONE,
@@ -57,8 +60,8 @@ void MainWindow::on_pencilAction_triggered() {
   this->canvasView->setCanvasState(CanvasState::Shapes::PENCIL);
 }
 
-void MainWindow::on_arrowAction_triggered() {
-  this->canvasView->setCanvasState(CanvasState::Shapes::ARROW);
+void MainWindow::on_lineAction_triggered() {
+  this->canvasView->setCanvasState(CanvasState::Shapes::LINE);
 }
 
 void MainWindow::on_polygonAction_triggered() {

@@ -132,7 +132,7 @@
    <addaction name="polygonAction"/>
    <addaction name="penAction"/>
    <addaction name="pencilAction"/>
-   <addaction name="arrowAction"/>
+   <addaction name="lineAction"/>
    <addaction name="imageAction"/>
    <addaction name="textAction"/>
   </widget>
@@ -212,7 +212,7 @@
   <action name="scaleAction">
    <property name="icon">
     <iconset resource="../resource/res.qrc">
-     <normaloff>:/icons/icons/scale.png</normaloff>:/icons/icons/scale.png</iconset>
+     <normaloff>:/icons/icons/scale-icon.svg</normaloff>:/icons/icons/scale-icon.svg</iconset>
    </property>
    <property name="text">
     <string>Scale</string>
@@ -221,16 +221,16 @@
     <string>Scale</string>
    </property>
   </action>
-  <action name="arrowAction">
+  <action name="lineAction">
    <property name="icon">
     <iconset resource="../resource/res.qrc">
-     <normaloff>:/icons/icons/arrow-icon.svg</normaloff>:/icons/icons/arrow-icon.svg</iconset>
+     <normaloff>:/icons/icons/line-icon.svg</normaloff>:/icons/icons/line-icon.svg</iconset>
    </property>
    <property name="text">
-    <string>Arrow</string>
+    <string>Line</string>
    </property>
    <property name="toolTip">
-    <string>Arrow</string>
+    <string>Line</string>
    </property>
   </action>
   <action name="polygonAction">

@@ -3,8 +3,8 @@
 
 #include <QGraphicsScene>
 #include <drawingstates.h>
+#include <rectangleitem.h>
 
-class BaseItem;
 class MainCanvas : public QGraphicsScene {
   Q_OBJECT
 public:
@@ -12,17 +12,20 @@ public:
   ~MainCanvas();
   void setCanvasState(CanvasState::Shapes = CanvasState::Shapes::NONE,
                       CanvasState::State state = CanvasState::State::DRAW);
-
-private:
-  BaseItem *currentItem;
-  CanvasState::State state;
-  CanvasState::Shapes shape;
-
+  void setItemsMovable(bool isMovable);
+  void setItemsSelectable(bool isSelectable);
   // QGraphicsScene interface
-  // protected:
+protected:
   void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
   void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
   void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
+  BaseShapeItem *onDrawShape(QPointF itemPos);
+
+private:
+  BaseShapeItem *currentItem;
+  CanvasState::State state;
+  CanvasState::Shapes shape;
+  bool mousePressed;
 };
 
 #endif // MAINCANVAS_H

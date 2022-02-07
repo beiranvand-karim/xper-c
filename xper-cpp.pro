@@ -30,7 +30,6 @@ SOURCES += \
 HEADERS += \
     include/canvasstates/moveitemhandler.h \
     include/canvasview.h \
-    include/drawingShapes/drawingstates.h \
     include/drawingShapes/ellipseitem.h \
     include/drawingShapes/imageitem.h \
     include/drawingShapes/lineitem.h \
@@ -43,8 +42,7 @@ HEADERS += \
     include/drawingShapes/textitemwrapper.h \
     include/drawingShapes/customtextgraphics.h \
     include/maincanvas.h \
-    include/mainwindow.h \
-    include/eventfilter/viewzoomhandler.h
+    include/mainwindow.h
 
 FORMS += \
     ui/mainwindow.ui

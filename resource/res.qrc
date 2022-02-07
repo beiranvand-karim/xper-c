@@ -1,7 +1,6 @@
 <RCC>
-    <qresource prefix="/icons">
+    <qresource prefix="/">
         <file>icons/ellipse-icon.svg</file>
-        <file>icons/frame-icon.svg</file>
         <file>icons/rectangle-icon.svg</file>
         <file>icons/move-icon.svg</file>
         <file>icons/xper.png</file>
@@ -12,5 +11,7 @@
         <file>icons/text-icon.svg</file>
         <file>icons/line-icon.svg</file>
         <file>icons/scale-icon.svg</file>
+        <file>icons/scale-cursor.png</file>
+        <file>icons/frame-icon.svg</file>
     </qresource>
 </RCC>

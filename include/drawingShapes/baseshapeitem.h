@@ -11,29 +11,28 @@ class BaseShapeItem : public QGraphicsItem {
 
 public:
   virtual ~BaseShapeItem() = default;
-  virtual void setBoundWidth(int boundWidth);
-  virtual void setBoundHeight(int boundHeight);
 
-  // QGraphicsItem interface
-  QPointF getItemPos() const;
-  void setItemPos(QPointF newItemPos);
-  int getBoundWidth() const;
-  int getBoundHeight() const;
+  QPointF getFirstPoint() const;
+  void setFirstPoint(QPointF newItemPos);
+  QPointF getLastPoint() const;
+  virtual void setLastPoint(QPointF newLastPoint);
+  virtual bool validateItemInsertion();
 
 protected:
   void hoverEnterEvent(QGraphicsSceneHoverEvent *event) override;
   void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;
 
 protected:
-  BaseShapeItem(QGraphicsItem *parent = nullptr);
+  BaseShapeItem(QGraphicsScene *mainCanvas);
   void drawBorders(QRectF boundingRect, QPainter *painter);
+  void drawShapeOnHover(QPainterPath &path, QPainter *painter);
 
+  QGraphicsScene *mainCanvas;
   int id;
   bool isEnterEvent;
-  int borderWidth, boundWidth, boundHeight;
   QBrush *brush;
   QPen *pen;
-  QPointF itemPos;
+  QPointF firstPoint, lastPoint;
 };
 
 #endif // BASEITEM_H

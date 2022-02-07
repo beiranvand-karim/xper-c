@@ -2,21 +2,22 @@
 #define TEXTITEM_H
 
 #include "baseshapeitem.h"
-
-#include <QObject>
 #include <customtextgraphics.h>
 
-class TextItem : public BaseShapeItem, public QObject {
+class TextItemWrapper : public BaseShapeItem {
 
 public:
-  TextItem(QPointF itemPos, QGraphicsItem *parent = nullptr);
-  ~TextItem();
+  TextItemWrapper(QPointF itemPos, QGraphicsScene *parent = nullptr);
+  ~TextItemWrapper();
 
   // QGraphicsItem interface
 public:
   void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
              QWidget *widget) override;
   QRectF boundingRect() const override;
+  // BaseShapeItem interface
+public:
+  bool validateItemInsertion() override;
 
 private:
   QString text;

@@ -1,14 +1,15 @@
 #ifndef VIEWZOOMHANDLER_H
 #define VIEWZOOMHANDLER_H
 
-#include "drawingstates.h"
+#include "canvasstatesenums.h"
 #include <QGraphicsView>
 #include <QObject>
+#include <maincanvas.h>
 
 class ViewZoomHandler : public QObject {
   Q_OBJECT
 public:
-  ViewZoomHandler(QGraphicsView *view);
+  ViewZoomHandler(QGraphicsView *view, MainCanvas *canvas);
 
   void setDrawState(CanvasState::State newDrawState);
   void onMouseWheel(QWheelEvent *event);
@@ -20,9 +21,12 @@ private:
   void onMousePressed(QEvent *event);
 
   QGraphicsView *view;
+  MainCanvas *canvas;
   Qt::KeyboardModifiers modifiers;
   double zoomFactorBase;
   CanvasState::State drawState;
+  QPixmap cursorPix;
+  QCursor scaleCursor;
 };
 
 #endif // VIEWZOOMHANDLER_H

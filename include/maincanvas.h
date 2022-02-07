@@ -2,18 +2,20 @@
 #define MAINCANVAS_H
 
 #include <QGraphicsScene>
-#include <drawingstates.h>
-#include <rectangleitem.h>
+#include <baseshapeitem.h>
+#include <canvasstatesenums.h>
+#include <penitem.h>
 
 class MainCanvas : public QGraphicsScene {
   Q_OBJECT
 public:
-  explicit MainCanvas(QObject *parent);
+  explicit MainCanvas(QGraphicsView *view);
   ~MainCanvas();
   void setCanvasState(CanvasState::Shapes = CanvasState::Shapes::NONE,
                       CanvasState::State state = CanvasState::State::DRAW);
   void setItemsMovable(bool isMovable);
   void setItemsSelectable(bool isSelectable);
+  void deleteCurrentItem();
   // QGraphicsScene interface
 protected:
   void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
@@ -22,9 +24,11 @@ protected:
   BaseShapeItem *onDrawShape(QPointF itemPos);
 
 private:
+  QGraphicsView *view;
   BaseShapeItem *currentItem;
+  PenItem *currentPenItem;
   CanvasState::State state;
-  CanvasState::Shapes shape;
+  CanvasState::Shapes currentShapeType, lastShapeType;
   bool mousePressed;
 };
 

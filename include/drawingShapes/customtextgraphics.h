@@ -6,23 +6,23 @@
 class CustomTextGraphics : public QGraphicsTextItem {
 
 public:
-  CustomTextGraphics(QPointF itemPos, QGraphicsItem *parent = nullptr);
+  CustomTextGraphics(QPointF itemPos, QGraphicsItem *parent = nullptr,
+                     QGraphicsScene *mainCanvas = nullptr);
   ~CustomTextGraphics();
   // QGraphicsItem interface
 public:
   QRectF boundingRect() const override;
   void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
              QWidget *widget) override;
-
-  void focusInEvent(QFocusEvent *event) override;
   void focusOutEvent(QFocusEvent *event) override;
 
-  void setHeight(int newHeight);
-  void setWidth(int newWidth);
+protected:
+  void keyPressEvent(QKeyEvent *event) override;
 
 private:
   QPointF itemPos;
-  int width, height;
+  QGraphicsItem *textItemWrapper;
+  QGraphicsScene *mainCanvas;
 };
 
 #endif // CUSTOMTEXTGRAPHICS_H

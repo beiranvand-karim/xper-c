@@ -9,34 +9,31 @@ EllipseItem::~EllipseItem() {
   delete this->pen;
   delete this->brush;
 }
-EllipseItem::EllipseItem(QPointF itemPos, QGraphicsItem *parent)
+EllipseItem::EllipseItem(QPointF itemPos, QGraphicsScene *parent)
     : BaseShapeItem(parent) {
-  this->itemPos = itemPos;
+  this->firstPoint = itemPos;
+  this->lastPoint = itemPos;
 }
 
 QRectF EllipseItem::boundingRect() const {
-  return QRectF(this->itemPos.x(), this->itemPos.y(), this->boundWidth,
-                this->boundHeight);
+  return QRectF(this->firstPoint, this->lastPoint).normalized();
 }
 
 void EllipseItem::paint(QPainter *painter,
                         const QStyleOptionGraphicsItem *option,
                         QWidget *widget) {
+  Q_UNUSED(option)
+  Q_UNUSED(widget)
+  QPainterPath path;
+  path.addEllipse(this->boundingRect());
   painter->save();
   painter->setRenderHint(QPainter::Antialiasing);
   painter->setPen(*this->pen);
   painter->setBrush(*this->brush);
-  painter->drawEllipse(this->boundingRect());
+  painter->drawPath(path);
   painter->restore();
-  if (this->isSelected()) {
+  if (this->isSelected())
     BaseShapeItem::drawBorders(this->boundingRect(), painter);
-    return;
-  } else if (this->isEnterEvent) {
-    painter->save();
-    painter->setRenderHint(QPainter::Antialiasing);
-    painter->setPen(QPen(Qt::blue, 2));
-    painter->drawEllipse(this->boundingRect());
-    painter->restore();
-    return;
-  }
+  else if (this->isEnterEvent)
+    BaseShapeItem::drawShapeOnHover(path, painter);
 }

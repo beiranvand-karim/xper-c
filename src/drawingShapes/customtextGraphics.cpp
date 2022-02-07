@@ -1,16 +1,20 @@
 #include "customtextgraphics.h"
-#include "iostream"
+#include <QGraphicsItem>
+#include <QGraphicsScene>
 #include <QStyleOptionGraphicsItem>
-
-using namespace std;
 
 CustomTextGraphics::~CustomTextGraphics() {}
 
-CustomTextGraphics::CustomTextGraphics(QPointF itemPos, QGraphicsItem *parent)
-    : QGraphicsTextItem(parent), itemPos(itemPos), width(0), height(0) {
+CustomTextGraphics::CustomTextGraphics(QPointF itemPos, QGraphicsItem *parent,
+                                       QGraphicsScene *mainCanvas)
+    : QGraphicsTextItem(parent), itemPos(itemPos), textItemWrapper(parent),
+      mainCanvas(mainCanvas) {
+  this->setParentItem(parent);
   this->setFlags(ItemIsFocusable | ItemIsSelectable);
   this->setTextInteractionFlags(Qt::TextEditorInteraction);
+  this->setCursor(QCursor(Qt::IBeamCursor));
   this->setPos(itemPos);
+  this->setFocus();
 }
 
 QRectF CustomTextGraphics::boundingRect() const {
@@ -22,28 +26,15 @@ void CustomTextGraphics::paint(QPainter *painter,
                                QWidget *widget) {
   QStyleOptionGraphicsItem opt(*option);
   opt.state = QStyle::State_Editing;
-  parentItem()->update();
   QGraphicsTextItem::paint(painter, &opt, widget);
-}
-
-void CustomTextGraphics::focusInEvent(QFocusEvent *event) {
-  this->parentItem()->setSelected(true);
-  this->parentItem()->update();
-  this->update();
-  QGraphicsTextItem::focusInEvent(event);
 }
 
 void CustomTextGraphics::focusOutEvent(QFocusEvent *event) {
   QGraphicsTextItem::focusOutEvent(event);
 }
-void CustomTextGraphics::setHeight(int newHeight) {
-  height = newHeight;
-  this->update();
-  this->parentItem()->update();
-}
 
-void CustomTextGraphics::setWidth(int newWidth) {
-  width = newWidth;
-  this->update();
-  this->parentItem()->update();
+void CustomTextGraphics::keyPressEvent(QKeyEvent *event) {
+  QGraphicsTextItem::keyPressEvent(event);
+  this->textItemWrapper->update();
+  this->mainCanvas->update();
 }

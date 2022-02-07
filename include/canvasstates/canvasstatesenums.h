@@ -2,7 +2,7 @@
 #define DRAWINGSTATES_H
 
 namespace CanvasState {
-enum State { DRAW, MOVE, SCALE, FRAME };
+enum State { DRAW, MOVE, SCALE };
 
 enum Shapes {
   NONE,
@@ -14,6 +14,7 @@ enum Shapes {
   TEXT,
   PEN,
   PENCIL,
+  FRAME
 };
 }; // namespace DrawingStates
 

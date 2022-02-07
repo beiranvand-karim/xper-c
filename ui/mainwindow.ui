@@ -139,7 +139,7 @@
   <action name="moveAction">
    <property name="icon">
     <iconset resource="../resource/res.qrc">
-     <normaloff>:/icons/icons/move-icon.svg</normaloff>:/icons/icons/move-icon.svg</iconset>
+     <normaloff>:/icons/move-icon.svg</normaloff>:/icons/move-icon.svg</iconset>
    </property>
    <property name="text">
     <string>move</string>
@@ -151,7 +151,7 @@
   <action name="rectAction">
    <property name="icon">
     <iconset resource="../resource/res.qrc">
-     <normaloff>:/icons/icons/rectangle-icon.svg</normaloff>:/icons/icons/rectangle-icon.svg</iconset>
+     <normaloff>:/icons/rectangle-icon.svg</normaloff>:/icons/rectangle-icon.svg</iconset>
    </property>
    <property name="text">
     <string>rectangle</string>
@@ -160,23 +160,10 @@
     <string>Rectangle</string>
    </property>
   </action>
-  <action name="frameAction">
-   <property name="icon">
-    <iconset>
-     <normalon>:/icons/icons/frame-icon.svg</normalon>
-    </iconset>
-   </property>
-   <property name="text">
-    <string>frame</string>
-   </property>
-   <property name="toolTip">
-    <string>Frame</string>
-   </property>
-  </action>
   <action name="ellipseAction">
    <property name="icon">
     <iconset resource="../resource/res.qrc">
-     <normaloff>:/icons/icons/ellipse-icon.svg</normaloff>:/icons/icons/ellipse-icon.svg</iconset>
+     <normaloff>:/icons/ellipse-icon.svg</normaloff>:/icons/ellipse-icon.svg</iconset>
    </property>
    <property name="text">
     <string>Ellipse</string>
@@ -188,7 +175,7 @@
   <action name="penAction">
    <property name="icon">
     <iconset resource="../resource/res.qrc">
-     <normaloff>:/icons/icons/pen-icon.svg</normaloff>:/icons/icons/pen-icon.svg</iconset>
+     <normaloff>:/icons/pen-icon.svg</normaloff>:/icons/pen-icon.svg</iconset>
    </property>
    <property name="text">
     <string>Pen</string>
@@ -200,7 +187,7 @@
   <action name="pencilAction">
    <property name="icon">
     <iconset resource="../resource/res.qrc">
-     <normaloff>:/icons/icons/pencil-icon.svg</normaloff>:/icons/icons/pencil-icon.svg</iconset>
+     <normaloff>:/icons/pencil-icon.svg</normaloff>:/icons/pencil-icon.svg</iconset>
    </property>
    <property name="text">
     <string>Pencil</string>
@@ -212,7 +199,7 @@
   <action name="scaleAction">
    <property name="icon">
     <iconset resource="../resource/res.qrc">
-     <normaloff>:/icons/icons/scale-icon.svg</normaloff>:/icons/icons/scale-icon.svg</iconset>
+     <normaloff>:/icons/scale-icon.svg</normaloff>:/icons/scale-icon.svg</iconset>
    </property>
    <property name="text">
     <string>Scale</string>
@@ -224,7 +211,7 @@
   <action name="lineAction">
    <property name="icon">
     <iconset resource="../resource/res.qrc">
-     <normaloff>:/icons/icons/line-icon.svg</normaloff>:/icons/icons/line-icon.svg</iconset>
+     <normaloff>:/icons/line-icon.svg</normaloff>:/icons/line-icon.svg</iconset>
    </property>
    <property name="text">
     <string>Line</string>
@@ -236,7 +223,7 @@
   <action name="polygonAction">
    <property name="icon">
     <iconset resource="../resource/res.qrc">
-     <normaloff>:/icons/icons/polygon-icon.svg</normaloff>:/icons/icons/polygon-icon.svg</iconset>
+     <normaloff>:/icons/polygon-icon.svg</normaloff>:/icons/polygon-icon.svg</iconset>
    </property>
    <property name="text">
     <string>Polygon</string>
@@ -248,7 +235,7 @@
   <action name="imageAction">
    <property name="icon">
     <iconset resource="../resource/res.qrc">
-     <normaloff>:/icons/icons/image-icon.svg</normaloff>:/icons/icons/image-icon.svg</iconset>
+     <normaloff>:/icons/image-icon.svg</normaloff>:/icons/image-icon.svg</iconset>
    </property>
    <property name="text">
     <string>Image</string>
@@ -260,13 +247,25 @@
   <action name="textAction">
    <property name="icon">
     <iconset resource="../resource/res.qrc">
-     <normaloff>:/icons/icons/text-icon.svg</normaloff>:/icons/icons/text-icon.svg</iconset>
+     <normaloff>:/icons/text-icon.svg</normaloff>:/icons/text-icon.svg</iconset>
    </property>
    <property name="text">
     <string>Text</string>
    </property>
    <property name="toolTip">
     <string>Text</string>
+   </property>
+  </action>
+  <action name="frameAction">
+   <property name="icon">
+    <iconset resource="../resource/res.qrc">
+     <normaloff>:/icons/frame-icon.svg</normaloff>:/icons/frame-icon.svg</iconset>
+   </property>
+   <property name="text">
+    <string>frameAction</string>
+   </property>
+   <property name="toolTip">
+    <string>frame</string>
    </property>
   </action>
  </widget>

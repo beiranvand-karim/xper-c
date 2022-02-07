@@ -1,9 +1,11 @@
 #include "baseshapeitem.h"
 
-BaseShapeItem::BaseShapeItem(QGraphicsItem *parent)
-    : QGraphicsItem(parent), isEnterEvent(false), borderWidth(1), boundWidth(0),
-      boundHeight(0), brush(new QBrush(Qt::gray)), pen(new QPen(Qt::gray)) {
-  this->setFlag(ItemIsSelectable);
+#include <QGraphicsScene>
+
+BaseShapeItem::BaseShapeItem(QGraphicsScene *parent)
+    : mainCanvas(parent), isEnterEvent(false), brush(new QBrush(Qt::darkGray)),
+      pen(new QPen(Qt::gray, 2)) {
+  this->setFlags(ItemIsSelectable);
   this->setAcceptHoverEvents(true);
 }
 
@@ -16,32 +18,28 @@ void BaseShapeItem::drawBorders(QRectF boundingRect, QPainter *painter) {
   painter->restore();
 }
 
-int BaseShapeItem::getBoundWidth() const { return boundWidth; }
+void BaseShapeItem::drawShapeOnHover(QPainterPath &path, QPainter *painter) {
+  painter->save();
+  painter->setRenderHint(QPainter::Antialiasing);
+  painter->setPen(QPen(Qt::darkBlue, 2));
+  painter->drawPath(path);
+  painter->restore();
+}
+QPointF BaseShapeItem::getFirstPoint() const { return firstPoint; }
+QPointF BaseShapeItem::getLastPoint() const { return lastPoint; }
 
-int BaseShapeItem::getBoundHeight() const { return boundHeight; }
-
-QPointF BaseShapeItem::getItemPos() const { return itemPos; }
-
-void BaseShapeItem::setItemPos(QPointF newItemPos) {
-  if (this->itemPos != newItemPos) {
+void BaseShapeItem::setLastPoint(QPointF newLastPoint) {
+  if (this->lastPoint != newLastPoint) {
     prepareGeometryChange();
-    this->itemPos = newItemPos;
+    this->lastPoint = newLastPoint;
     this->update();
   }
 }
 
-void BaseShapeItem::setBoundWidth(int boundWidth) {
-  if (this->boundWidth != boundWidth) {
+void BaseShapeItem::setFirstPoint(QPointF newItemPos) {
+  if (this->firstPoint != newItemPos) {
     prepareGeometryChange();
-    this->boundWidth = boundWidth;
-    this->update();
-  }
-}
-
-void BaseShapeItem::setBoundHeight(int boundHeight) {
-  if (this->boundHeight != boundHeight) {
-    prepareGeometryChange();
-    this->boundHeight = boundHeight;
+    this->firstPoint = newItemPos;
     this->update();
   }
 }
@@ -56,3 +54,10 @@ void BaseShapeItem::hoverLeaveEvent(QGraphicsSceneHoverEvent *event) {
   this->isEnterEvent = false;
   QGraphicsItem::hoverEnterEvent(event);
 };
+
+bool BaseShapeItem::validateItemInsertion() {
+  if (qAbs(this->lastPoint.x() - this->firstPoint.x()) > 0 &&
+      qAbs(this->lastPoint.y() - this->firstPoint.y()) > 0)
+    return true;
+  return false;
+}

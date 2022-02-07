@@ -6,7 +6,7 @@
 class RectangleItem : public BaseShapeItem {
 public:
   RectangleItem(QPointF itemPos = QPointF(20, 20),
-                QGraphicsItem *parent = nullptr);
+                QGraphicsScene *parent = nullptr);
   ~RectangleItem();
 
   // QGraphicsItem interface

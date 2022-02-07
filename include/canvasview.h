@@ -3,8 +3,9 @@
 
 #include "viewzoomhandler.h"
 #include <QGraphicsView>
-#include <drawingstates.h>
+#include <canvasstatesenums.h>
 #include <maincanvas.h>
+#include <moveitemhandler.h>
 
 class CanvasView : public QGraphicsView {
   Q_OBJECT
@@ -20,6 +21,7 @@ protected:
 private:
   MainCanvas *canvas;
   ViewZoomHandler *zoomHandler;
+  MoveItemHandler *moveHandler;
 };
 
 #endif // CANVASVIEW_H

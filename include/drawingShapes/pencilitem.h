@@ -1,21 +1,18 @@
-#ifndef LINEITEM_H
-#define LINEITEM_H
+#ifndef PENCILITEM_H
+#define PENCILITEM_H
 
-#include "baseshapeitem.h"
+#include <baseshapeitem.h>
 
-class LineItem : public BaseShapeItem {
-
+class PencilItem : public BaseShapeItem {
 public:
-  LineItem(QPointF firstPoint = QPointF(0, 0),
-           QGraphicsScene *parent = nullptr);
-  ~LineItem();
+  PencilItem(QPointF itemFirstPos, QGraphicsScene *parent = nullptr);
+  ~PencilItem();
 
   // QGraphicsItem interface
 public:
   QRectF boundingRect() const override;
   void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
              QWidget *widget) override;
-  QPainterPath shape() const override;
 
 protected:
   void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
@@ -23,9 +20,11 @@ protected:
   // BaseShapeItem interface
 public:
   bool validateItemInsertion() override;
+  void setLastPoint(QPointF newLastPoint) override;
 
 private:
+  QPolygonF poly;
   bool isClicked;
 };
 
-#endif // LINEITEM_H
+#endif // PENCILITEM_H

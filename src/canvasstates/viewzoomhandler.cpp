@@ -1,26 +1,29 @@
 #include "viewzoomhandler.h"
-#include "iostream"
 #include <QApplication>
 #include <QKeyEvent>
 #include <QMouseEvent>
 #include <QPoint>
-#include <QTransform>
 #include <QWheelEvent>
 #include <qmath.h>
 
-using namespace std;
+ViewZoomHandler::ViewZoomHandler(QGraphicsView *view, MainCanvas *canvas)
+    : QObject(view), view(view), canvas(canvas), modifiers(Qt::ControlModifier),
+      zoomFactorBase(1.15) {
 
-ViewZoomHandler::ViewZoomHandler(QGraphicsView *view)
-    : QObject(view), view(view) {
+  cursorPix = QPixmap(":/icons/scale-cursor.png");
+  scaleCursor = QCursor(cursorPix);
   view->setMouseTracking(true);
   view->installEventFilter(this);
-
-  modifiers = Qt::ControlModifier;
-  zoomFactorBase = 1.15;
 }
 
 void ViewZoomHandler::setDrawState(CanvasState::State newDrawState) {
   drawState = newDrawState;
+  if (drawState == CanvasState::State::SCALE) {
+    view->cursor() = scaleCursor;
+    view->setCursor(scaleCursor);
+    canvas->setItemsSelectable(false);
+    canvas->setItemsMovable(false);
+  }
 }
 
 bool ViewZoomHandler::eventFilter(QObject *object, QEvent *event) {

@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "QScreen"
-#include "drawingstates.h"
+#include "canvasstatesenums.h"
 #include "iostream"
 #include "ui_mainwindow.h"
 
@@ -40,8 +40,7 @@ void MainWindow::on_scaleAction_triggered() {
 }
 
 void MainWindow::on_frameAction_triggered() {
-  this->canvasView->setCanvasState(CanvasState::Shapes::NONE,
-                                   CanvasState::State::FRAME);
+  this->canvasView->setCanvasState(CanvasState::Shapes::FRAME);
 }
 
 void MainWindow::on_rectAction_triggered() {

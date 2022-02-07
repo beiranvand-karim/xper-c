@@ -7,7 +7,7 @@ class EllipseItem : public BaseShapeItem {
 
 public:
   EllipseItem(QPointF itemPos = QPointF(20, 20),
-              QGraphicsItem *parent = nullptr);
+              QGraphicsScene *parent = nullptr);
 
   ~EllipseItem();
 

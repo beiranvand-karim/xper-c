@@ -11,6 +11,8 @@ PencilItem::~PencilItem() {
 }
 PencilItem::PencilItem(QPointF itemFirstPos, QGraphicsScene *parent)
     : BaseShapeItem(parent), isClicked(false) {
+  this->firstPoint = this->secondPoint;
+  this->secondPoint = this->firstPoint;
   poly << itemFirstPos;
 }
 
@@ -25,7 +27,7 @@ void PencilItem::paint(QPainter *painter,
   painter->setPen(*this->pen);
   painter->setBrush(*this->brush);
   painter->setRenderHint(QPainter::Antialiasing);
-  if (!this->lastPoint.isNull())
+  if (!this->secondPoint.isNull())
     painter->drawPolyline(poly);
   painter->restore();
   if (this->isSelected() && isClicked) {
@@ -40,15 +42,15 @@ void PencilItem::paint(QPainter *painter,
 }
 
 bool PencilItem::validateItemInsertion() {
-  if (this->lastPoint.isNull())
-    return false;
-  return true;
+  if (BaseShapeItem::validateItemInsertion() && poly.length() > 1)
+    return true;
+  return false;
 }
 
-void PencilItem::setLastPoint(QPointF newLastPoint) {
-  BaseShapeItem::setLastPoint(newLastPoint);
-  if (!this->lastPoint.isNull()) {
-    poly << this->lastPoint;
+void PencilItem::setSecondPoint(QPointF newPoint) {
+  BaseShapeItem::setSecondPoint(newPoint);
+  if (!this->secondPoint.isNull()) {
+    poly << this->secondPoint;
   }
   this->update();
 }

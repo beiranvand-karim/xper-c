@@ -6,7 +6,7 @@
 #include <imageitem.h>
 #include <lineitem.h>
 #include <pencilitem.h>
-#include <penitem.h>
+#include <pentool.h>
 #include <polygonitem.h>
 #include <rectangleitem.h>
 #include <textitemwrapper.h>
@@ -15,7 +15,7 @@ using namespace std;
 
 MainCanvas::MainCanvas(QGraphicsView *view)
     : QGraphicsScene(view), view(view), currentItem(nullptr),
-      currentPenItem(nullptr), state(CanvasState::State::DRAW),
+      currentPenTool(nullptr), state(CanvasState::State::DRAW),
       currentShapeType(CanvasState::Shapes::NONE), mousePressed(false) {
   this->setSceneRect(0, 0, 1000, 1000);
   this->setBackgroundBrush(QBrush(QColor(135, 130, 100, 100)));
@@ -69,15 +69,12 @@ void MainCanvas::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 }
 
 void MainCanvas::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
-  if (mousePressed && this->state == CanvasState::State::DRAW) {
+  if (this->currentShapeType == CanvasState::Shapes::PEN && currentPenTool)
+    currentPenTool->setPenState(event->scenePos(), mousePressed);
+  else if (mousePressed && this->state == CanvasState::State::DRAW) {
     if (currentItem) {
-      currentItem->setLastPoint(event->scenePos());
+      currentItem->setSecondPoint(event->scenePos());
       currentItem->setSelected(true);
-    }
-  } else if (this->lastShapeType == CanvasState::Shapes::PEN &&
-             this->lastShapeType == this->currentShapeType) {
-    if (currentPenItem && currentPenItem->getIsControlLineDrawn()) {
-      currentPenItem->setLastPoint(event->scenePos());
     }
   }
   this->update();
@@ -111,13 +108,13 @@ BaseShapeItem *MainCanvas::onDrawShape(QPointF itemPos) {
     return new TextItemWrapper(itemPos, this);
   case CanvasState::PEN: {
     if (currentItem && lastShapeType == CanvasState::Shapes::PEN) {
-      if (currentPenItem->getIsControlLineDrawn()) {
-        currentPenItem->drawLineToNewPoint(itemPos);
-        return currentItem;
-      }
+      currentPenTool->draw(itemPos);
+      return currentItem;
     }
-    currentPenItem = new PenItem(itemPos, this);
-    return currentPenItem;
+    currentPenTool = nullptr;
+    currentItem = nullptr;
+    currentPenTool = new PenTool(itemPos, this);
+    return currentPenTool;
   }
   case CanvasState::PENCIL:
     return new PencilItem(itemPos, this);

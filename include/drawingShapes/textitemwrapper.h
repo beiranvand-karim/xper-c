@@ -2,6 +2,7 @@
 #define TEXTITEM_H
 
 #include "baseshapeitem.h"
+#include <QGraphicsScene>
 #include <customtextgraphics.h>
 
 class TextItemWrapper : public BaseShapeItem {
@@ -21,6 +22,7 @@ public:
 
 private:
   QString text;
+  QGraphicsScene *parentScene;
   CustomTextGraphics *customTextGraphics;
 };
 

@@ -5,10 +5,10 @@
 #include <QObject>
 #include <maincanvas.h>
 
-class MoveItemHandler : public QObject {
+class SelectionHandler : public QObject {
   Q_OBJECT
 public:
-  MoveItemHandler(QGraphicsView *view, MainCanvas *canvas);
+  SelectionHandler(QGraphicsView *view, MainCanvas *canvas);
 
   void setDrawState(CanvasState::State newDrawState);
 

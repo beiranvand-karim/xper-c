@@ -1,4 +1,4 @@
-#include "viewzoomhandler.h"
+#include "zoomhandler.h"
 #include <QApplication>
 #include <QKeyEvent>
 #include <QMouseEvent>
@@ -6,7 +6,7 @@
 #include <QWheelEvent>
 #include <qmath.h>
 
-ViewZoomHandler::ViewZoomHandler(QGraphicsView *view, MainCanvas *canvas)
+ZoomHandler::ZoomHandler(QGraphicsView *view, MainCanvas *canvas)
     : QObject(view), view(view), canvas(canvas), modifiers(Qt::ControlModifier),
       zoomFactorBase(1.15) {
 
@@ -16,17 +16,19 @@ ViewZoomHandler::ViewZoomHandler(QGraphicsView *view, MainCanvas *canvas)
   view->installEventFilter(this);
 }
 
-void ViewZoomHandler::setDrawState(CanvasState::State newDrawState) {
+void ZoomHandler::setDrawState(CanvasState::State newDrawState) {
   drawState = newDrawState;
   if (drawState == CanvasState::State::SCALE) {
     view->cursor() = scaleCursor;
     view->setCursor(scaleCursor);
+    view->update();
     canvas->setItemsSelectable(false);
     canvas->setItemsMovable(false);
+    canvas->update();
   }
 }
 
-bool ViewZoomHandler::eventFilter(QObject *object, QEvent *event) {
+bool ZoomHandler::eventFilter(QObject *object, QEvent *event) {
   if (drawState == CanvasState::State::SCALE) {
     if (event->type() == QEvent::KeyPress)
       onKeyPressed(event);
@@ -36,12 +38,12 @@ bool ViewZoomHandler::eventFilter(QObject *object, QEvent *event) {
   return QObject::eventFilter(object, event);
 }
 
-void ViewZoomHandler::zoom(double factor) {
+void ZoomHandler::zoom(double factor) {
   view->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
   view->scale(factor, factor);
 }
 
-void ViewZoomHandler::onKeyPressed(QEvent *event) {
+void ZoomHandler::onKeyPressed(QEvent *event) {
   auto keyEvent = static_cast<QKeyEvent *>(event);
   switch (keyEvent->key()) {
   case Qt::Key_Plus: {
@@ -57,7 +59,7 @@ void ViewZoomHandler::onKeyPressed(QEvent *event) {
   }
 }
 
-void ViewZoomHandler::onMousePressed(QEvent *event) {
+void ZoomHandler::onMousePressed(QEvent *event) {
   auto mouseEvent = static_cast<QMouseEvent *>(event);
   switch (mouseEvent->button()) {
   case Qt::LeftButton: {
@@ -73,7 +75,7 @@ void ViewZoomHandler::onMousePressed(QEvent *event) {
   }
 }
 
-void ViewZoomHandler::onMouseWheel(QWheelEvent *event) {
+void ZoomHandler::onMouseWheel(QWheelEvent *event) {
   double degree = event->angleDelta().y() / 8.0;
   double numSteps = degree / 15;
   double factor = std::pow(1.25, numSteps);

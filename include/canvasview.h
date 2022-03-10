@@ -1,11 +1,11 @@
 #ifndef CANVASVIEW_H
 #define CANVASVIEW_H
 
-#include "viewzoomhandler.h"
+#include "zoomhandler.h"
 #include <QGraphicsView>
 #include <canvasstatesenums.h>
 #include <maincanvas.h>
-#include <moveitemhandler.h>
+#include <selectionhandler.h>
 
 class CanvasView : public QGraphicsView {
   Q_OBJECT
@@ -20,8 +20,8 @@ protected:
 
 private:
   MainCanvas *canvas;
-  ViewZoomHandler *zoomHandler;
-  MoveItemHandler *moveHandler;
+  ZoomHandler *zoomHandler;
+  SelectionHandler *selectionHandler;
 };
 
 #endif // CANVASVIEW_H

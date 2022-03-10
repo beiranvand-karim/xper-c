@@ -22,11 +22,12 @@ public:
   bool validateItemInsertion() override;
 
 public:
-  bool isImageInserted();
+  void setImagePath();
 
 private:
   QList<QString> imagePath;
   QImage image;
   QFileDialog fileDialog;
+  bool isImageSelected;
 };
 #endif // IMAGEITEM_H

@@ -9,11 +9,11 @@ PolygonItem::~PolygonItem() {
 PolygonItem::PolygonItem(QPointF itemPos, QGraphicsScene *parent)
     : BaseShapeItem(parent) {
   this->firstPoint = itemPos;
-  this->lastPoint = itemPos;
+  this->secondPoint = this->firstPoint;
 }
 
 QRectF PolygonItem::boundingRect() const {
-  return QRectF(this->firstPoint, this->lastPoint).normalized();
+  return QRectF(this->firstPoint, this->secondPoint).normalized();
 }
 
 void PolygonItem::paint(QPainter *painter,

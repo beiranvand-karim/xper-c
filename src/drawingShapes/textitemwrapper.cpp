@@ -16,22 +16,24 @@ TextItemWrapper::~TextItemWrapper() {
 }
 
 TextItemWrapper::TextItemWrapper(QPointF itemPos, QGraphicsScene *parent)
-    : BaseShapeItem(parent), customTextGraphics(nullptr) {
+    : BaseShapeItem(parent), parentScene(parent), customTextGraphics(nullptr) {
   this->firstPoint = itemPos;
-  this->lastPoint = itemPos;
-  customTextGraphics = new CustomTextGraphics(itemPos, this, parent);
+  this->secondPoint = this->firstPoint;
   this->setSelected(true);
 }
 
 QRectF TextItemWrapper::boundingRect() const {
-  int boundWidth = lastPoint.x() - firstPoint.x();
-  int boundHeight = lastPoint.y() - firstPoint.y();
-  int maxWitdth =
-      max(customTextGraphics->boundingRect().width(), double(boundWidth));
-  int maxHeight =
-      max(customTextGraphics->boundingRect().height(), double(boundHeight));
-  return QRectF(customTextGraphics->x(), customTextGraphics->y(), maxWitdth,
-                maxHeight);
+  if (customTextGraphics) {
+    int boundWidth = secondPoint.x() - firstPoint.x();
+    int boundHeight = secondPoint.y() - firstPoint.y();
+    int maxWitdth =
+        max(customTextGraphics->boundingRect().width(), double(boundWidth));
+    int maxHeight =
+        max(customTextGraphics->boundingRect().height(), double(boundHeight));
+    return QRectF(customTextGraphics->x(), customTextGraphics->y(), maxWitdth,
+                  maxHeight);
+  }
+  return QRectF(this->firstPoint, this->secondPoint).normalized();
 }
 
 void TextItemWrapper::paint(QPainter *painter,
@@ -42,7 +44,8 @@ void TextItemWrapper::paint(QPainter *painter,
   QPainterPath path;
   path.addRect(this->boundingRect());
   if (this->isSelected()) {
-    this->customTextGraphics->setFocus();
+    if (customTextGraphics)
+      this->customTextGraphics->setFocus();
     BaseShapeItem::drawBorders(this->boundingRect(), painter);
   } else if (this->isEnterEvent) {
     BaseShapeItem::drawShapeOnHover(path, painter);
@@ -50,7 +53,10 @@ void TextItemWrapper::paint(QPainter *painter,
 }
 
 bool TextItemWrapper::validateItemInsertion() {
-  if (!BaseShapeItem::validateItemInsertion())
-    return false;
-  return true;
+  if (BaseShapeItem::validateItemInsertion()) {
+    customTextGraphics =
+        new CustomTextGraphics(this->firstPoint, this, parentScene);
+    return true;
+  }
+  return false;
 }

@@ -1,5 +1,5 @@
-#ifndef BASEITEM_H
-#define BASEITEM_H
+#ifndef BASESHAPEITEM_H
+#define BASESHAPEITEM_H
 
 #include <QBrush>
 #include <QColor>
@@ -12,11 +12,19 @@ class BaseShapeItem : public QGraphicsItem {
 public:
   virtual ~BaseShapeItem() = default;
 
-  QPointF getFirstPoint() const;
-  void setFirstPoint(QPointF newItemPos);
-  QPointF getLastPoint() const;
-  virtual void setLastPoint(QPointF newLastPoint);
+  virtual QPointF getFirstPoint() const;
+  virtual void setFirstPoint(QPointF firstPoint);
+
+  virtual QPointF getSecondPoint() const;
+  virtual void setSecondPoint(QPointF secondPoint);
+
   virtual bool validateItemInsertion();
+
+  qreal getBoundWidth() const;
+  void setBoundWidth(qreal newBoundWidth);
+
+  qreal getBoundHeight() const;
+  void setBoundHeight(qreal newBoundHeight);
 
 protected:
   void hoverEnterEvent(QGraphicsSceneHoverEvent *event) override;
@@ -32,7 +40,8 @@ protected:
   bool isEnterEvent;
   QBrush *brush;
   QPen *pen;
-  QPointF firstPoint, lastPoint;
+  QPointF firstPoint, secondPoint;
+  qreal boundWidth, boundHeight;
 };
 
-#endif // BASEITEM_H
+#endif // BASESHAPEITEM_H

@@ -13,11 +13,11 @@ RectangleItem::~RectangleItem() {
 RectangleItem::RectangleItem(QPointF itemPos, QGraphicsScene *parent)
     : BaseShapeItem(parent), radiusX(0), radiusY(0) {
   this->firstPoint = itemPos;
-  this->lastPoint = itemPos;
+  this->secondPoint = this->firstPoint;
 }
 
 QRectF RectangleItem::boundingRect() const {
-  return QRectF(this->firstPoint, this->lastPoint).normalized();
+  return QRectF(this->firstPoint, this->secondPoint).normalized();
 }
 
 void RectangleItem::paint(QPainter *painter,

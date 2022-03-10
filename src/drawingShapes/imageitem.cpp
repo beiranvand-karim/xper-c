@@ -7,9 +7,9 @@
 using namespace std;
 
 ImageItem::ImageItem(QPointF itemPos, QGraphicsScene *parent)
-    : BaseShapeItem(parent) {
+    : BaseShapeItem(parent), isImageSelected(false) {
   this->firstPoint = itemPos;
-  this->lastPoint = itemPos;
+  this->secondPoint = itemPos;
 }
 
 ImageItem::~ImageItem() {
@@ -18,7 +18,7 @@ ImageItem::~ImageItem() {
 }
 
 QRectF ImageItem::boundingRect() const {
-  return QRectF(firstPoint, lastPoint).normalized();
+  return QRectF(firstPoint, secondPoint).normalized();
 }
 
 void ImageItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
@@ -39,20 +39,19 @@ void ImageItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 }
 
 bool ImageItem::validateItemInsertion() {
-  if (isImageInserted())
-    return true;
+  if (BaseShapeItem::validateItemInsertion()) {
+    setImagePath();
+    return this->isImageSelected;
+  }
   return false;
 }
 
-bool ImageItem::isImageInserted() {
-  if (!BaseShapeItem::validateItemInsertion())
-    return false;
+void ImageItem::setImagePath() {
   fileDialog.setFileMode(QFileDialog::FileMode::ExistingFiles);
   fileDialog.setNameFilter("Images (*.png *.xpm *.jpg *.jpeg *.svg)");
   if (fileDialog.exec())
     imagePath = fileDialog.selectedFiles();
-  if (imagePath.isEmpty())
-    return false;
+  if (!imagePath.isEmpty())
+    this->isImageSelected = true;
   image.load(imagePath.first());
-  return true;
 }

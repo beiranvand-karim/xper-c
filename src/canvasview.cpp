@@ -10,8 +10,8 @@ using namespace std;
 
 CanvasView::CanvasView(QWidget *parent) : QGraphicsView(parent) {
   canvas = new MainCanvas(this);
-  zoomHandler = new ViewZoomHandler(this, canvas);
-  moveHandler = new MoveItemHandler(this, canvas);
+  zoomHandler = new ZoomHandler(this, canvas);
+  selectionHandler = new SelectionHandler(this, canvas);
   this->setScene(canvas);
   this->setMouseTracking(canvas);
   this->show();
@@ -24,7 +24,7 @@ CanvasView::~CanvasView() {
 
 void CanvasView::setCanvasState(CanvasState::Shapes shape,
                                 CanvasState::State state) {
-  moveHandler->setDrawState(state);
+  selectionHandler->setDrawState(state);
   zoomHandler->setDrawState(state);
   canvas->setCanvasState(shape, state);
 }

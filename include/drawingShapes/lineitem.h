@@ -20,10 +20,6 @@ public:
 protected:
   void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
 
-  // BaseShapeItem interface
-public:
-  bool validateItemInsertion() override;
-
 private:
   bool isClicked;
 };

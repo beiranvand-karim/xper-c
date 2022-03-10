@@ -4,7 +4,7 @@
 #include <QGraphicsScene>
 #include <baseshapeitem.h>
 #include <canvasstatesenums.h>
-#include <penitem.h>
+#include <pentool.h>
 
 class MainCanvas : public QGraphicsScene {
   Q_OBJECT
@@ -26,7 +26,7 @@ protected:
 private:
   QGraphicsView *view;
   BaseShapeItem *currentItem;
-  PenItem *currentPenItem;
+  PenTool *currentPenTool;
   CanvasState::State state;
   CanvasState::Shapes currentShapeType, lastShapeType;
   bool mousePressed;

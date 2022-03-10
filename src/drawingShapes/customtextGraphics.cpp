@@ -10,7 +10,7 @@ CustomTextGraphics::CustomTextGraphics(QPointF itemPos, QGraphicsItem *parent,
     : QGraphicsTextItem(parent), itemPos(itemPos), textItemWrapper(parent),
       mainCanvas(mainCanvas) {
   this->setParentItem(parent);
-  this->setFlags(ItemIsFocusable | ItemIsSelectable);
+  this->setFlags(ItemIsFocusable | ItemIsSelectable | ItemAcceptsInputMethod);
   this->setTextInteractionFlags(Qt::TextEditorInteraction);
   this->setCursor(QCursor(Qt::IBeamCursor));
   this->setPos(itemPos);

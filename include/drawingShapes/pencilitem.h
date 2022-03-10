@@ -20,7 +20,7 @@ protected:
   // BaseShapeItem interface
 public:
   bool validateItemInsertion() override;
-  void setLastPoint(QPointF newLastPoint) override;
+  void setSecondPoint(QPointF newPoint) override;
 
 private:
   QPolygonF poly;

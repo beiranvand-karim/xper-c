@@ -4,7 +4,7 @@
 
 BaseShapeItem::BaseShapeItem(QGraphicsScene *parent)
     : mainCanvas(parent), isEnterEvent(false), brush(new QBrush(Qt::darkGray)),
-      pen(new QPen(Qt::gray, 2)) {
+      pen(new QPen(Qt::darkGray, 1)), boundWidth(0), boundHeight(0) {
   this->setFlags(ItemIsSelectable);
   this->setAcceptHoverEvents(true);
 }
@@ -25,21 +25,35 @@ void BaseShapeItem::drawShapeOnHover(QPainterPath &path, QPainter *painter) {
   painter->drawPath(path);
   painter->restore();
 }
-QPointF BaseShapeItem::getFirstPoint() const { return firstPoint; }
-QPointF BaseShapeItem::getLastPoint() const { return lastPoint; }
 
-void BaseShapeItem::setLastPoint(QPointF newLastPoint) {
-  if (this->lastPoint != newLastPoint) {
+qreal BaseShapeItem::getBoundHeight() const { return boundHeight; }
+
+void BaseShapeItem::setBoundHeight(qreal newBoundHeight) {
+  boundHeight = newBoundHeight;
+}
+
+qreal BaseShapeItem::getBoundWidth() const { return boundWidth; }
+
+void BaseShapeItem::setBoundWidth(qreal newBoundWidth) {
+  boundWidth = newBoundWidth;
+}
+QPointF BaseShapeItem::getFirstPoint() const { return firstPoint; }
+QPointF BaseShapeItem::getSecondPoint() const { return secondPoint; }
+
+void BaseShapeItem::setSecondPoint(QPointF newPoint) {
+  if (this->secondPoint != newPoint) {
     prepareGeometryChange();
-    this->lastPoint = newLastPoint;
+    this->secondPoint = newPoint;
+    setBoundWidth(this->secondPoint.x() - this->firstPoint.x());
+    setBoundHeight(this->secondPoint.y() - this->firstPoint.y());
     this->update();
   }
 }
 
-void BaseShapeItem::setFirstPoint(QPointF newItemPos) {
-  if (this->firstPoint != newItemPos) {
+void BaseShapeItem::setFirstPoint(QPointF newPoint) {
+  if (this->firstPoint != newPoint) {
     prepareGeometryChange();
-    this->firstPoint = newItemPos;
+    this->firstPoint = newPoint;
     this->update();
   }
 }
@@ -48,7 +62,6 @@ void BaseShapeItem::hoverEnterEvent(QGraphicsSceneHoverEvent *event) {
   this->isEnterEvent = true;
   QGraphicsItem::hoverEnterEvent(event);
 };
-;
 
 void BaseShapeItem::hoverLeaveEvent(QGraphicsSceneHoverEvent *event) {
   this->isEnterEvent = false;
@@ -56,8 +69,7 @@ void BaseShapeItem::hoverLeaveEvent(QGraphicsSceneHoverEvent *event) {
 };
 
 bool BaseShapeItem::validateItemInsertion() {
-  if (qAbs(this->lastPoint.x() - this->firstPoint.x()) > 0 &&
-      qAbs(this->lastPoint.y() - this->firstPoint.y()) > 0)
-    return true;
-  return false;
+  if (this->firstPoint == this->secondPoint)
+    return false;
+  return true;
 }

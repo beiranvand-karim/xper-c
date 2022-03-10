@@ -12,11 +12,11 @@ EllipseItem::~EllipseItem() {
 EllipseItem::EllipseItem(QPointF itemPos, QGraphicsScene *parent)
     : BaseShapeItem(parent) {
   this->firstPoint = itemPos;
-  this->lastPoint = itemPos;
+  this->secondPoint = itemPos;
 }
 
 QRectF EllipseItem::boundingRect() const {
-  return QRectF(this->firstPoint, this->lastPoint).normalized();
+  return QRectF(this->firstPoint, this->secondPoint).normalized();
 }
 
 void EllipseItem::paint(QPainter *painter,

@@ -6,10 +6,10 @@
 #include <QObject>
 #include <maincanvas.h>
 
-class ViewZoomHandler : public QObject {
+class ZoomHandler : public QObject {
   Q_OBJECT
 public:
-  ViewZoomHandler(QGraphicsView *view, MainCanvas *canvas);
+  ZoomHandler(QGraphicsView *view, MainCanvas *canvas);
 
   void setDrawState(CanvasState::State newDrawState);
   void onMouseWheel(QWheelEvent *event);
